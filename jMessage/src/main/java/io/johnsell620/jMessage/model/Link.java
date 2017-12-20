@@ -1,9 +1,51 @@
 package io.johnsell620.jMessage.model;
 
+import javax.persistence.Cacheable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+@Entity
+@Table(name="links")
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Link {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="linkId")
+	private long id;
 	private String link;
 	private String rel;
-	
+	private Long messageId;
+    
+    public Link() {
+    	
+    }
+    
+    public Link(long id, String link) {
+    	this.id = id;
+    	this.link = link;
+    }
+
+	public Long getMessageId() {
+		return messageId;
+	}
+	public void setMessageId(Long messageId) {
+		this.messageId = messageId;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}	
 	public String getLink() {
 		return link;
 	}
@@ -17,8 +59,6 @@ public class Link {
 		this.rel = rel;
 	}
 	
-	
-
 } 
 // In the java documentation there is a provided link class that could be 
 // more suited for this.

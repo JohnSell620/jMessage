@@ -4,16 +4,26 @@
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+    
+    	<!-- connection details -->
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">root</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jMessage</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jMessage?useSSL=false</property><!-- autoReconnect=true OR verifyServerCertificate -->
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
+        
+        <!-- caching configuration -->
         <property name="hibernate.cache.use_second_level_cache">true</property>
         <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 		<property name="hibernate.cache.use_query_cache">true</property>    
+    	
+    	<!-- mappings for annotated classes -->
+    	<mapping class="io.johnsell620.jMessage.model.Message"/>
+    	<mapping class="io.johnsell620.jMessage.model.Comment"/>
+    	<mapping class="io.johnsell620.jMessage.model.Link"/> 
+    	
     </session-factory>
 </hibernate-configuration>

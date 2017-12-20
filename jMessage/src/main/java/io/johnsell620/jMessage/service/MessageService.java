@@ -3,7 +3,10 @@ package io.johnsell620.jMessage.service;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+//import java.util.HashMap;
 import java.util.List;
+//import java.util.Map;
+
 import org.hibernate.Query;
 //import java.util.Map;
 import org.hibernate.Session;
@@ -13,13 +16,23 @@ import io.johnsell620.jMessage.model.Message;
 
 public class MessageService {
 	
+//	Map<Long, Message> messages = new HashMap<>();
+	
+	public MessageService() {
+//		messages.put(1L, new Message(1, "Hello World!", "johnny"));
+//		messages.put(2L, new Message(2, "Hello Jersey!", "johnny"));
+	}
+	
 	public Message getMessage(long id) {
+//		System.out.println("message request");
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		
 		Message message = (Message) session.get(Message.class, id);
 		session.getTransaction().commit();
 		session.close();
+		
+//		Message message = messages.get(id);
 
 		if (message == null) {
 			throw new DataNotFoundException("Messgae with id " + id + " not found");
@@ -28,6 +41,7 @@ public class MessageService {
 	}
 	
 	public Message addMessage(Message message) {
+//		System.out.println("message post");
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(message);

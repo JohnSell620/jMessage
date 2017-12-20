@@ -3,27 +3,29 @@ package io.johnsell620.jMessage.model;
 import java.util.Date;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+//import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name="messages")
+@Table(name="comments")
 @Cacheable
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Comment {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="commentId")
 	private long id;
-	@ManyToOne
     private String message;
+//    @ManyToOne
 	private Long messageId;
     private Date created;
     private String author;
