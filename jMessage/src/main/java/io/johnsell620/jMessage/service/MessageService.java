@@ -6,42 +6,40 @@ import java.util.Collections;
 //import java.util.HashMap;
 import java.util.List;
 //import java.util.Map;
-
 import org.hibernate.Query;
 //import java.util.Map;
 import org.hibernate.Session;
 import io.johnsell620.jMessage.dao.HibernateUtil;
 import io.johnsell620.jMessage.exception.DataNotFoundException;
 import io.johnsell620.jMessage.model.Message;
-
+//import io.johnsell620.jMessage.dao.dataUtil;
+/**
+ * 
+ * @author johnny
+ *
+ */
 public class MessageService {
-	
-//	Map<Long, Message> messages = new HashMap<>();
-	
+		
 	public MessageService() {
-//		messages.put(1L, new Message(1, "Hello World!", "johnny"));
-//		messages.put(2L, new Message(2, "Hello Jersey!", "johnny"));
 	}
 	
 	public Message getMessage(long id) {
-//		System.out.println("message request");
+		Message message = new Message();
+		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		
-		Message message = (Message) session.get(Message.class, id);
+		message = (Message) session.get(Message.class, id);
 		session.getTransaction().commit();
 		session.close();
 		
-//		Message message = messages.get(id);
-
 		if (message == null) {
 			throw new DataNotFoundException("Messgae with id " + id + " not found");
 		}
 		return message;
+//		return dataUtil.get("Message", id);
 	}
 	
 	public Message addMessage(Message message) {
-//		System.out.println("message post");
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(message);
@@ -57,23 +55,28 @@ public class MessageService {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.update(message.getMessage(), message);
-//		session.createQuery("INSERT :message)
 		session.getTransaction().commit();	
 		session.close();
 		return message;
 	}
 	
 	public Message removeMessage(long id) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		Message message = (Message) session.get(Message.class, id);
-		session.getTransaction().commit();
-		session.beginTransaction();
-		session.createQuery("DELETE from messages where id = :id")
+		Message message = new Message();
+		
+		Session session1 = HibernateUtil.getSessionFactory().openSession();
+		session1.beginTransaction();
+		message = (Message) session1.get(Message.class, id);
+		session1.getTransaction().commit();
+		session1.close();
+		
+		Session session2 = HibernateUtil.getSessionFactory().openSession();
+		session2.beginTransaction();
+		session2.createQuery("DELETE from messages where id = :id")
 			.setParameter("id", id)
 			.executeUpdate();
-		session.getTransaction().commit();	
-		session.close();
+		session2.getTransaction().commit();	
+		session2.close();
+		
 		return message;
 	}
 	
@@ -82,7 +85,6 @@ public class MessageService {
 		session.beginTransaction();
 		Query query = session.createQuery("from messages");
 		query.setCacheable(true);
-//		q = (Message)query.uniqueResult();
 		session.getTransaction().commit();
 		session.close();
 		

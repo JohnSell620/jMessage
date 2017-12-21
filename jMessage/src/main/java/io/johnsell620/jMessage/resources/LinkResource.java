@@ -11,10 +11,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import io.johnsell620.jMessage.model.Link;
 import io.johnsell620.jMessage.service.LinkService;
-
+/**
+ * 
+ * @author johnny
+ *
+ */
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

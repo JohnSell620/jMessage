@@ -55,16 +55,19 @@ public class CommentService {
 	}
 	
 	public Comment removeComment(long messageId, long commentId) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		Comment comment = (Comment) session.get(Comment.class, commentId);
-		session.getTransaction().commit();
-		session.beginTransaction();
-		session.createQuery("DELETE from comments where commentId = :commentId")
+		Session session1 = HibernateUtil.getSessionFactory().openSession();
+		session1.beginTransaction();
+		Comment comment = (Comment) session1.get(Comment.class, commentId);
+		session1.getTransaction().commit();	
+		session1.close();
+
+		Session session2 = HibernateUtil.getSessionFactory().openSession();
+		session2.beginTransaction();
+		session2.createQuery("DELETE from comments where commentId = :commentId")
 			.setParameter("commentId", commentId)
 			.executeUpdate();
-		session.getTransaction().commit();	
-		session.close();
+		session2.getTransaction().commit();	
+		session2.close();
 		return comment;
 	}
 

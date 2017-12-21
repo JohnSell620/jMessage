@@ -3,14 +3,17 @@ package io.johnsell620.jMessage.model;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
+/**
+ * 
+ * @author johnny
+ *
+ */
 @Entity
 @Table(name="links")
 @Cacheable
@@ -18,7 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Link {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="linkId")
 	private long id;
 	private String link;

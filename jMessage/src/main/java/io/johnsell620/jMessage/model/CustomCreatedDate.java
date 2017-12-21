@@ -1,11 +1,15 @@
 package io.johnsell620.jMessage.model;
 
-import com.fasterxml.jackson.databind.SerializationConfig;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
+//import com.fasterxml.jackson.databind.SerializationConfig;
+//import com.fasterxml.jackson.databind.SerializationFeature;
+/**
+ * 
+ * @author johnny
+ *
+ */
 public class CustomCreatedDate extends Message {
-	public CustomObjectDate() {
-        configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);            
-//        setDateFormat(new ISO8601DateFormat());
-    }
+//	public CustomObjectDate() {
+//        configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);            
+////        setDateFormat(new ISO8601DateFormat());
+//    }
 }

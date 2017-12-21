@@ -2,7 +2,6 @@ package io.johnsell620.jMessage.resources;
 
 import java.net.URI;
 import java.util.List;
-
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -16,12 +15,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-
 import io.johnsell620.jMessage.model.Message;
 import io.johnsell620.jMessage.resources.beans.MessageFilterBean;
 import io.johnsell620.jMessage.service.MessageService;
-
-
+/**
+ * 
+ * @author johnny
+ *
+ */
 @Path("/messages")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
