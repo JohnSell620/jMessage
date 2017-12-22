@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import io.johnsell620.jMessage.dao.HibernateUtil;
 import io.johnsell620.jMessage.exception.DataNotFoundException;
 import io.johnsell620.jMessage.model.Message;
-import io.johnsell620.jMessage.dao.dataUtil;
 /**
  * 
  * @author johnny
@@ -21,7 +20,7 @@ public class MessageService {
 	}
 	
 	public Message getMessage(long id) {
-		Message message = (Message) dataUtil.get("Message", id);
+		Message message = (Message) ServiceUtil.get("Message", id);
 		if (message == null) {
 			throw new DataNotFoundException("Message with id " + id + " not found");
 		}
@@ -29,7 +28,7 @@ public class MessageService {
 	}
 	
 	public Message addMessage(Message message) {
-		dataUtil.add(message);
+		ServiceUtil.add(message);
 		return message;
 	}
 	
@@ -37,16 +36,16 @@ public class MessageService {
 		if (message.getId() <= 0) {
 			return null;
 		}
-		dataUtil.update(message);
+		ServiceUtil.update(message);
 		return message;
 	}
 	
 	public Message removeMessage(long id) {
-		Message message = (Message) dataUtil.get("Message", id);
+		Message message = (Message) ServiceUtil.get("Message", id);
 		if (message == null) {
 			throw new DataNotFoundException("Message with id " + id + " not found");
 		}
-		dataUtil.remove("Message", id);
+		ServiceUtil.remove("Message", id);
 		return message;
 	}
 	
@@ -64,7 +63,7 @@ public class MessageService {
 		return list;
 	}
 	
-	// Needs error handling
+	// TODO Needs error handling
 	public List<Message> getAllMessagesForYear(int year) { 
 		List<Message> messagesForYear = new ArrayList<>();
 		Calendar cal = Calendar.getInstance();

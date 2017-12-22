@@ -10,7 +10,11 @@ import org.hibernate.Session;
 import io.johnsell620.jMessage.dao.HibernateUtil;
 import io.johnsell620.jMessage.model.ErrorMessage;
 import io.johnsell620.jMessage.model.Profile;
-
+/**
+ * 
+ * @author johnny
+ *
+ */
 public class ProfileService {
 
 	public Profile getProfile(String profileName) {
@@ -33,11 +37,7 @@ public class ProfileService {
 	}
 	
 	public Profile addProfile(Profile profile) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.save(profile);
-		session.getTransaction().commit();	
-		session.close();
+		ServiceUtil.add(profile);
 		return profile;
 	}
 	
@@ -45,11 +45,7 @@ public class ProfileService {
 		if (profile.getProfileName().isEmpty()) {
 			return null;
 		}
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.update(profile);
-		session.getTransaction().commit();	
-		session.close();
+		ServiceUtil.update(profile);
 		return profile;
 	}
 	

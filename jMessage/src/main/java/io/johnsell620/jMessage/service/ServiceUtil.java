@@ -1,14 +1,18 @@
-package io.johnsell620.jMessage.dao;
+package io.johnsell620.jMessage.service;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-
+import io.johnsell620.jMessage.dao.HibernateUtil;
 import io.johnsell620.jMessage.model.Comment;
 import io.johnsell620.jMessage.model.Link;
 import io.johnsell620.jMessage.model.Message;
+/**
+ * 
+ * @author johnny
+ *
+ */
+public class ServiceUtil {
 
-public class dataUtil {
-	
 	private static Object val;
 	
 	public static Object get (String objectType, Long id) {

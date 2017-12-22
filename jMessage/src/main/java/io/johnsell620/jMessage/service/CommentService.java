@@ -8,11 +8,14 @@ import javax.ws.rs.core.Response.Status;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import io.johnsell620.jMessage.dao.HibernateUtil;
-import io.johnsell620.jMessage.dao.dataUtil;
 import io.johnsell620.jMessage.exception.DataNotFoundException;
 import io.johnsell620.jMessage.model.Comment;
 import io.johnsell620.jMessage.model.ErrorMessage;
-
+/**
+ * 
+ * @author johnny
+ *
+ */
 public class CommentService {
 	
 	public Comment getComment(long messageId, long commentId) {
@@ -21,7 +24,7 @@ public class CommentService {
 				.entity(errorMessage)
 				.build();
 		
-		Comment comment = (Comment) dataUtil.get("Comment", commentId);
+		Comment comment = (Comment) ServiceUtil.get("Comment", commentId);
 		if (comment == null) {
 			throw new NotFoundException(response);	// Look at java documentation
 		}
@@ -30,7 +33,7 @@ public class CommentService {
 	
 	public Comment addComment(long messageId, Comment comment) {
 		comment.setMessageId(messageId);
-		dataUtil.add(comment);
+		ServiceUtil.add(comment);
 		return comment;
 	}
 	
@@ -38,16 +41,16 @@ public class CommentService {
 		if (comment.getId() <= 0) {
 			return null;
 		}
-		dataUtil.update(comment);
+		ServiceUtil.update(comment);
 		return comment;
 	}
 	
 	public Comment removeComment(long messageId, long commentId) {
-		Comment comment = (Comment) dataUtil.get("Comment", commentId);
+		Comment comment = (Comment) ServiceUtil.get("Comment", commentId);
 		if (comment == null) {
 			throw new DataNotFoundException("Comment with id " + commentId + " not found");
 		}
-		dataUtil.remove("Comment", commentId);
+		ServiceUtil.remove("Comment", commentId);
 		return comment;
 	}
 

@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name="links")
 @Cacheable
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Link {
 
 	@Id

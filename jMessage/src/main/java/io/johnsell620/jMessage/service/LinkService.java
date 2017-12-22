@@ -8,7 +8,6 @@ import javax.ws.rs.core.Response.Status;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import io.johnsell620.jMessage.dao.HibernateUtil;
-import io.johnsell620.jMessage.dao.dataUtil;
 import io.johnsell620.jMessage.model.Link;
 import io.johnsell620.jMessage.model.ErrorMessage;
 /**
@@ -24,7 +23,7 @@ public class LinkService {
 				.entity(errorMessage)
 				.build();
 
-		Link link = (Link) dataUtil.get("Link", linkId);
+		Link link = (Link) ServiceUtil.get("Link", linkId);
 		if (link == null) {
 			throw new NotFoundException(response);	// Look at java documentation
 		}
@@ -33,7 +32,7 @@ public class LinkService {
 	
 	public Link addLink(long messageId, Link link) {
 		link.setMessageId(messageId);
-		dataUtil.add(link);
+		ServiceUtil.add(link);
 		return link;
 	}
 	
@@ -41,7 +40,7 @@ public class LinkService {
 		if (link.getId() <= 0) {
 			return null;
 		}
-		dataUtil.update(link);
+		ServiceUtil.update(link);
 		return link;
 	}
 	
@@ -51,11 +50,11 @@ public class LinkService {
 				.entity(errorMessage)
 				.build();
 
-		Link link = (Link) dataUtil.get("Link", linkId);
+		Link link = (Link) ServiceUtil.get("Link", linkId);
 		if (link == null) {
 			throw new NotFoundException(response);	// Look at java documentation
 		}
-		dataUtil.remove("Link", linkId);
+		ServiceUtil.remove("Link", linkId);
 		return link;
 	}
 

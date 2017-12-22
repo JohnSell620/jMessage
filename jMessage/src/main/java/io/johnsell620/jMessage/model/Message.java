@@ -24,7 +24,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name="messages")
 @XmlRootElement
 @Cacheable
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Message {
 	
 	@Id

@@ -65,8 +65,6 @@ public class MessageResource {
 		return Response.created(uri)
 				.entity(newMessage)
 				.build();
-		
-		// return messageService.addMessage(message);
 	}
 	
 	@PUT
