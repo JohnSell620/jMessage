@@ -15,10 +15,10 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         
-        <!-- caching configuration -->
+        <!-- caching configuration --> 
 		<property name="hibernate.cache.use_second_level_cache">true</property>
 		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
-		<property name="hibernate.cache.use_query_cache">true</property>    
+		<property name="hibernate.cache.use_query_cache">true</property>   
     	
     	<!-- mappings for annotated classes -->
     	<mapping class="io.johnsell620.jMessage.model.Message"/>

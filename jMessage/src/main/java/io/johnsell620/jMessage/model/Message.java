@@ -1,25 +1,18 @@
 package io.johnsell620.jMessage.model;
 
-//import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-//import java.util.List;
 import java.util.Map;
-import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
-//import javax.persistence.OneToOne;
 import javax.persistence.Table;
-//import javax.ws.rs.client.Client;
-//import javax.ws.rs.core.Link;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.Cacheable;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
@@ -41,14 +34,13 @@ public class Message {
 	private String author;
 	private Date created;
 	
-	@OneToMany(mappedBy="messageId", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="messageId", cascade=CascadeType.ALL)
 	@MapKeyColumn(name="commentId")
 	private Map<Long, Comment> comments = new HashMap<>();
 	
-	@OneToMany(mappedBy="messageId", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="messageId", cascade=CascadeType.ALL)
 	@MapKeyColumn(name="linkId")
 	private Map<Long, Link> links = new HashMap<>();
-//	private List<Link> links = new ArrayList<>();
 	
 	public Message() {
 		
@@ -99,15 +91,6 @@ public class Message {
 		return links;
 	}
 
-//	public List<Link> getLinks() {
-//		return links;
-//	}
-//
-//	public void setLinks(List<Link> links) {
-//		this.links = links;
-//	}
-	
-	//TODO fix to eliminate LinkResource, etc.
 	public void addLink(String url, String rel) {
 		Link link = new Link();
 		link.setLink(url);

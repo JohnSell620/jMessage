@@ -2,8 +2,6 @@ package io.johnsell620.jMessage.dao;
 
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
-//import javax.transaction.Transaction;
-//import org.hibernate.Session;
 
 public class HibernateUtil {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
@@ -27,7 +25,4 @@ public class HibernateUtil {
         getSessionFactory().close();
     }
     
-//    public static long rowCount() {
-//    	return (Number) session.createCriteria("Book").setProjection(Projections.rowCount()).uniqueResult();
-//    }
 }

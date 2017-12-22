@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response.Status;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import io.johnsell620.jMessage.dao.HibernateUtil;
+import io.johnsell620.jMessage.dao.dataUtil;
 import io.johnsell620.jMessage.model.Link;
 import io.johnsell620.jMessage.model.ErrorMessage;
 /**
@@ -22,16 +23,8 @@ public class LinkService {
 		Response response = Response.status(Status.NOT_FOUND)
 				.entity(errorMessage)
 				.build();
-		Link link = new Link();
-				
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-//		Query link = session.createQuery("from links where linkId = :linkId")
-//						.setParameter("linkId", linkId);
-		link = (Link) session.get(Link.class, linkId);
-		session.getTransaction().commit();
-		session.close();
-		
+
+		Link link = (Link) dataUtil.get("Link", linkId);
 		if (link == null) {
 			throw new NotFoundException(response);	// Look at java documentation
 		}
@@ -40,11 +33,7 @@ public class LinkService {
 	
 	public Link addLink(long messageId, Link link) {
 		link.setMessageId(messageId);
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.save(link);
-		session.getTransaction().commit();	
-		session.close();	
+		dataUtil.add(link);
 		return link;
 	}
 	
@@ -52,29 +41,22 @@ public class LinkService {
 		if (link.getId() <= 0) {
 			return null;
 		}
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.update(link.getLink(), link);
-		session.getTransaction().commit();	
-		session.close();
+		dataUtil.update(link);
 		return link;
 	}
 	
 	public Link removeLink(long messageId, long linkId) {
-		Session session1 = HibernateUtil.getSessionFactory().openSession();
-		session1.beginTransaction();
-		Link comment = (Link) session1.get(Link.class, linkId);
-		session1.getTransaction().commit();
-		session1.close();
-		
-		Session session2 = HibernateUtil.getSessionFactory().openSession();
-		session2.beginTransaction();
-		session2.createQuery("DELETE from links where linkId = :linkId")
-			.setParameter("commentId", linkId)
-			.executeUpdate();
-		session2.getTransaction().commit();	
-		session2.close();
-		return comment;
+		ErrorMessage errorMessage = new ErrorMessage("Not found", 404, "documentation");
+		Response response = Response.status(Status.NOT_FOUND)
+				.entity(errorMessage)
+				.build();
+
+		Link link = (Link) dataUtil.get("Link", linkId);
+		if (link == null) {
+			throw new NotFoundException(response);	// Look at java documentation
+		}
+		dataUtil.remove("Link", linkId);
+		return link;
 	}
 
 	public List<Link> getAllLinks(long messageId) {

@@ -1,7 +1,6 @@
 package io.johnsell620.jMessage.model;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,8 +31,7 @@ public class Profile {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
-	
+		
 	public long getId() {
 		return id;
 	}
