@@ -29,9 +29,7 @@ public class Comment {
     private Date created;
     private String author;
     
-    public Comment() {
-    	
-    }
+    public Comment() {}
     
     public Comment(long id, String message, String author) {
     	this.id = id;

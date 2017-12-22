@@ -3,11 +3,12 @@ package io.johnsell620.jMessage.model;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,16 +17,17 @@ import javax.persistence.Table;
 public class Profile {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@Column(name="profileId")
 	private long id; 
 	private String profileName;
 	private String firstName;
 	private String lastName;
+	@OneToOne
+	private User user;
 	private Date created;
 	
-	public Profile() {
-		
-	}
+	public Profile() {}
 	
 	public Profile(long id, String profileName, String firstName, String lastName) {
 		this.id = id;
@@ -63,6 +65,12 @@ public class Profile {
 	}
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

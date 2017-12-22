@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.StringTokenizer;
 import org.glassfish.jersey.internal.util.Base64;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import io.johnsell620.jMessage.dao.HibernateUtil;
+import io.johnsell620.jMessage.model.User;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
@@ -29,7 +34,18 @@ public class SecurityFilter implements ContainerRequestFilter {
 				String username = tokenizer.nextToken();
 				String password = tokenizer.nextToken();
 				
-				if ("user".equals(username) && "password".equals(password)) {
+				Session session = HibernateUtil.getSessionFactory().openSession();
+				session.beginTransaction();
+				Query user = session.createQuery("from users where username = :username")
+						.setParameter("username", username);
+				session.getTransaction().commit();
+				session.close();
+				
+				User u = (User) user;
+				String uname = u.getUsername();
+				String pword = u.getPassword();
+				
+				if (uname.equals(username) && pword.equals(password)) {
 					return;
 				}				
 			}

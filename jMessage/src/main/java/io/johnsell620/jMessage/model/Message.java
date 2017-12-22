@@ -44,9 +44,7 @@ public class Message {
 	@MapKeyColumn(name="linkId")
 	private Map<Long, Link> links = new HashMap<>();
 	
-	public Message() {
-		
-	}
+	public Message() {}
 	
 	public Message(long id, String message, String author) {
 		this.id = id;
