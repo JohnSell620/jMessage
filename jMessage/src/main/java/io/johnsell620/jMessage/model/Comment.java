@@ -1,11 +1,13 @@
 package io.johnsell620.jMessage.model;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Cacheable;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
@@ -20,7 +22,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Comment {
 
 	@Id
-//	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="commentId")
 	private long id;
     private String message;

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Cacheable;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
@@ -19,7 +20,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Link {
 
 	@Id
-//	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="linkId")
 	private long id;
 	private String link;

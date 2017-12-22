@@ -3,6 +3,10 @@ package io.johnsell620.jMessage.model;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,9 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.persistence.Cacheable;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
@@ -28,7 +31,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Message {
 	
 	@Id
-//	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String message;
 	private String author;

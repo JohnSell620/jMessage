@@ -1,7 +1,11 @@
 package io.johnsell620.jMessage.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
+/**
+ * 
+ * @author johnny
+ *
+ */
 @XmlRootElement
 public class ErrorMessage {
 	

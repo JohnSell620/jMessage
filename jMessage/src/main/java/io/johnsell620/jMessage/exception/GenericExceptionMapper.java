@@ -6,7 +6,11 @@ import javax.ws.rs.ext.ExceptionMapper;
 //import javax.ws.rs.ext.Provider;
 
 import io.johnsell620.jMessage.model.ErrorMessage;
-
+/**
+ * 
+ * @author johnny
+ *
+ */
 //@Provider
 public class GenericExceptionMapper implements ExceptionMapper<Throwable> {
 

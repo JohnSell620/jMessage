@@ -2,6 +2,7 @@ package io.johnsell620.jMessage.resources;
 
 import java.net.URI;
 import java.util.List;
+
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
 import io.johnsell620.jMessage.model.Message;
 import io.johnsell620.jMessage.resources.beans.MessageFilterBean;
 import io.johnsell620.jMessage.service.MessageService;
@@ -23,7 +25,7 @@ import io.johnsell620.jMessage.service.MessageService;
  * @author johnny
  *
  */
-@Path("/messages")
+@Path("/secured/messages")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
@@ -31,7 +33,7 @@ public class MessageResource {
 	MessageService messageService = new MessageService();
 		
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)	
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getJsonMessages(@BeanParam MessageFilterBean filterBean) {
 		System.out.println("JSON method called");
 		if (filterBean.getYear() > 0) {
@@ -42,7 +44,7 @@ public class MessageResource {
 		}
 		return messageService.getAllMessages();
 	}
-	
+
 	@GET
 	@Produces(MediaType.TEXT_XML)	
 	public List<Message> getXmlMessages(@BeanParam MessageFilterBean filterBean) {

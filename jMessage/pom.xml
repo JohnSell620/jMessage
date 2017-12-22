@@ -50,7 +50,8 @@
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
         -->
-		<dependency> <!-- This dependency used in leu of the one above-moxy did not work. -->
+        <!-- This dependency used in lieu of moxy since it did not work. -->
+		<dependency> 
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<version>2.23.2</version>
