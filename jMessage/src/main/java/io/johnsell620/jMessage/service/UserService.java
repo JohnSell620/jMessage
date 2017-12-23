@@ -7,6 +7,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -20,7 +21,7 @@ import io.johnsell620.jMessage.model.User;
  */
 public class UserService {
 	
-	public User getUser(String userName) {
+	public User getUser(String username) {
 		ErrorMessage errorMessage = new ErrorMessage("Not found", 404, "documentation");
 		Response response = Response.status(Status.NOT_FOUND)
 				.entity(errorMessage)
@@ -28,8 +29,8 @@ public class UserService {
 				
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query user = session.createQuery("from users where userName = :userName")
-						.setParameter("userName", userName);
+		Query user = session.createQuery("from users where username = :username")
+						.setParameter("username", username);
 		session.getTransaction().commit();
 		session.close();
 		
@@ -48,18 +49,31 @@ public class UserService {
 		if (user.getUsername().isEmpty()) {
 			return null;
 		}
-		ServiceUtil.update(user);
+
+		Long pId = user.getpId();
+		String profileId = Long.toString(pId);
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {	
+			session.beginTransaction();
+			session.update(profileId, user);
+			session.getTransaction().commit();	
+			session.close();
+		}
+		catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}	
 		return user;
 	}
 	
-	public User removeUser(String userName) {
+	public User removeUser(String username) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		User user = (User) session.get(User.class, userName);
+		User user = (User) session.get(User.class, username);
 		session.getTransaction().commit();
 		session.beginTransaction();
-		session.createQuery("delete from users where userName = :userName")
-			.setParameter("userName", userName)
+		session.createQuery("delete from users where username = :username")
+			.setParameter("username", username)
 			.executeUpdate();
 		session.getTransaction().commit();	
 		session.close();

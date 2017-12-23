@@ -17,7 +17,7 @@ import io.johnsell620.jMessage.model.Profile;
  */
 public class ProfileService {
 
-	public Profile getProfile(String profileName) {
+	public Profile getProfile(String profilename) {
 		ErrorMessage errorMessage = new ErrorMessage("Not found", 404, "documentation");
 		Response response = Response.status(Status.NOT_FOUND)
 				.entity(errorMessage)
@@ -25,8 +25,8 @@ public class ProfileService {
 				
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query profile = session.createQuery("from profiles where profileName = :profileName")
-						.setParameter("profileName", profileName);
+		Query profile = session.createQuery("from profiles where profilename = :profilename")
+						.setParameter("profilename", profilename);
 		session.getTransaction().commit();
 		session.close();
 		
@@ -49,14 +49,14 @@ public class ProfileService {
 		return profile;
 	}
 	
-	public Profile removeProfile(String profileName) {
+	public Profile removeProfile(String profilename) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Profile profile = (Profile) session.get(Profile.class, profileName);
+		Profile profile = (Profile) session.get(Profile.class, profilename);
 		session.getTransaction().commit();
 		session.beginTransaction();
-		session.createQuery("delete from profiles where profileName = :profileName")
-			.setParameter("profileName", profileName)
+		session.createQuery("delete from profiles where profilename = :profilename")
+			.setParameter("profilename", profilename)
 			.executeUpdate();
 		session.getTransaction().commit();	
 		session.close();

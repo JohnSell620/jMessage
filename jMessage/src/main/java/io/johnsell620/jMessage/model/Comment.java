@@ -26,14 +26,15 @@ public class Comment {
 	private long id;
     private String message;
 	private Long messageId;
-    private Date created;
     private String author;
+    private Date created;
     
     public Comment() {}
     
-    public Comment(long id, String message, String author) {
+    public Comment(long id, String message, Long messageId, String author) {
     	this.id = id;
     	this.message = message;
+    	this.messageId = messageId;
     	this.author = author;
     	this.created = new Date();
     }
@@ -50,11 +51,11 @@ public class Comment {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public Date getCreated() {
-		return created;
+	public Long getMessageId() {
+		return messageId;
 	}
-	public void setCreated(Date created) {
-		this.created = created;
+	public void setMessageId(Long messageId) {
+		this.messageId = messageId;
 	}
 	public String getAuthor() {
 		return author;
@@ -62,13 +63,11 @@ public class Comment {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
-	public Long getMessageId() {
-		return messageId;
+	public Date getCreated() {
+		return created;
 	}
-
-	public void setMessageId(Long messageId) {
-		this.messageId = messageId;
+	public void setCreated(Date created) {
+		this.created = created;
 	}
     
 }

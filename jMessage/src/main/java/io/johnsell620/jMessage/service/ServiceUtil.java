@@ -6,6 +6,7 @@ import io.johnsell620.jMessage.dao.HibernateUtil;
 import io.johnsell620.jMessage.model.Comment;
 import io.johnsell620.jMessage.model.Link;
 import io.johnsell620.jMessage.model.Message;
+import io.johnsell620.jMessage.model.Profile;
 /**
  * 
  * @author johnny
@@ -58,19 +59,22 @@ public class ServiceUtil {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		try {
-			String message = null;
+			String update = null;
 			if (object instanceof Message) {
-				message = ((Message) object).getMessage();
+				update = ((Message) object).getMessage();
 			}
 			else if (object instanceof Comment) {
-				message = ((Comment) object).getMessage();
+				update = ((Comment) object).getMessage();
 			}
 			else if (object instanceof Link) {
-				message = ((Link) object).getLink();
+				update = ((Link) object).getLink();
+			}
+			else if (object instanceof Profile) {
+				update = ((Profile) object).getProfileName();
 			}
 			
 			session.beginTransaction();
-			session.update(message, object);
+			session.update(update, object);
 			session.getTransaction().commit();	
 			session.close();
 		}
