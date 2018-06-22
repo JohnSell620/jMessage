@@ -1,58 +1,58 @@
-# Overview
+## Overview
 This RESTful API provides a web messaging service (like Twitter) built on the Java EE platform. The Jersey library is used to implement the JAX-RS API for RESTful web services. Persistence is achieved using the object-relational mapping (ORM) library Hibernate. Data is stored in a MySQL database. Maven is used for build automation. Testing was done using Postman.
 
-# Directory Structure
+## File Structure
 ```
-├── .settings
+├── .settings    # project settings and workspace preferences for eclipse
 └── src/main
-|		└── java
-|   		└── io/johnsell620/jMessage
-|    		|		└── dao
-|				|		|		└── HybernateUtil.java
-|				|		├── exception
-|				|		|		├── DataNotFoundException.java
-|				|		|		├── DataNotFoundExceptionMapper.java
-|    		|		|		└── GenericExceptionMapper.java
-|				|		├── model
-|				|		|		├── Comment.java
-|				|		|		├── CustomCreatedDate.java
-|				|		|		├── ErrorMessage.java
-|				|		|		├── JsonDateSerializer.java
-|				|		|		├── Link.java
-|				|		|		├── Message.java
-|				|		|		├── Profile.java
-|				|		|		└── User.java
-|				|		├── resources
-|				|		|		├── CommentResource.java
-|				|		|		├── DateMessageBodyWriter.java
-|				|		|		├── LinkResource.java
-|				|		|		├── MessageResource.java
-|				|		|		├── ProfileResource.java
-|				|		|		└── UserResource.java
-|				|		├── rest
-|				|		|		├── LoggingFilter.java
-|				|		|		├── PoweredByResponseFilter.java
-|				|		|		├── SecuredResource.java
-|				|		|		└── SecurityFilter.java
-|    		|		└── service
-|				|				├── CommentService.java
-|				|				├── LinkService.java
-|				|				├── MessageService.java
-|				|				├── ProfileService.java
-|				|				├── ServiceUtil.java
-|				|				└── UserService.java
-|				└── webapp
-|   		 		├── index.jsp
-|   		 		└── WEB-INF
-|							  └── web.xml
+|   └── java
+|   |   └── io/johnsell620/jMessage
+|   |       └── dao
+|   |       |   └── HybernateUtil.java
+|   |       ├── exception
+|   |       |   ├── DataNotFoundException.java
+|   |       |   ├── DataNotFoundExceptionMapper.java
+|   |       |   └── GenericExceptionMapper.java
+|   |       ├── model
+|   |       |   ├── Comment.java
+|   |       |   ├── CustomCreatedDate.java
+|   |       |   ├── ErrorMessage.java
+|   |       |   ├── JsonDateSerializer.java
+|   |       |   ├── Link.java
+|   |       |   ├── Message.java
+|   |       |   ├── Profile.java
+|   |       |   └── User.java
+|   |       ├── resources
+|   |       |   ├── CommentResource.java
+|   |       |   ├── DateMessageBodyWriter.java
+|   |       |   ├── LinkResource.java
+|   |       |   ├── MessageResource.java
+|   |       |   ├── ProfileResource.java
+|   |       |   └── UserResource.java
+|   |       ├── rest
+|   |       |   ├── LoggingFilter.java
+|   |       |   ├── PoweredByResponseFilter.java
+|   |       |   ├── SecuredResource.java
+|   |       |   └── SecurityFilter.java
+|   |       └── service
+|   |           ├── CommentService.java
+|   |           ├── LinkService.java
+|   |           ├── MessageService.java
+|   |           ├── ProfileService.java
+|   |           ├── ServiceUtil.java
+|   |           └── UserService.java
+|   └── webapp
+|       ├── index.jsp
+|       └── WEB-INF
+|           └── web.xml
 ├── .classpath
 ├── .gitignore
 ├── .project
-├── pom.xml
-└── README.md
+├── README.md
+└── pom.xml
 ```
 
-# Maven Dependency Tree:
+## Maven Dependency Tree:
 ```
 --- maven-dependency-plugin:2.8:tree (default-cli) @ jMessage ---
 io.johnsell620:jMessage:war:0.0.1-SNAPSHOT
@@ -97,7 +97,7 @@ io.johnsell620:jMessage:war:0.0.1-SNAPSHOT
 \- commons-logging:commons-logging:jar:1.2:compile
 ```
 
-# Development
+## Development
 1. Clone the repository and import into eclipse.
 2. Create the MySQL database with the following SQL code.
 ```
@@ -147,4 +147,3 @@ CREATE TABLE `users` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 ```
-
