@@ -1,3 +1,33 @@
+/**
+ * @api {get} /webapi/messages/:id Request Message
+ * @apiName getMessage
+ * @apiGroup Resource
+ * 
+ * @apiParam {long} messageID Message's unique ID.
+ * 
+ * @apiSuccess {Message} Message object with Profile and Comments entries.
+ * @apiSuccess {uri} Message URI.
+ * 
+ * @apiSuccessExample Success-Response:
+ * 		HTTP/1.1 200 OK
+ * 		{
+ * 			"body": "message body",
+ * 			"Profile":  {
+ * 							"profilename": "user",
+ * 						},
+ * 			"Comments": {
+ * 							"comment 1": "comment",
+ * 								...
+ * 						}
+ * 		}
+ * 
+ * @apiErrorExample Error-Response:
+ * 		HTTP/1.1 404 Not Found
+ * 		{
+ * 			"error": "MessageNotFound"
+ * 		}
+ *
+ */
 package io.johnsell620.jMessage.resources;
 
 import java.net.URI;
@@ -20,11 +50,8 @@ import javax.ws.rs.core.UriInfo;
 import io.johnsell620.jMessage.model.Message;
 import io.johnsell620.jMessage.resources.beans.MessageFilterBean;
 import io.johnsell620.jMessage.service.MessageService;
-/**
- * 
- * @author johnny
- *
- */
+
+
 @Path("/secured/messages")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
