@@ -98,7 +98,7 @@ io.johnsell620:jMessage:war:0.0.1-SNAPSHOT
 ```
 
 ## Development
-1. Clone the repository and import into eclipse.
+1. Clone the repository and import into eclipse IDE.
 2. Create the MySQL database with the following SQL code.
 ```
 CREATE DATABASE `jMessage` /*!40100 DEFAULT CHARACTER SET utf8 */;
@@ -147,3 +147,11 @@ CREATE TABLE `users` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 ```
+3. Start server.
+4. Test.
+
+## References
+ - https://docs.oracle.com/javaee/7/tutorial/jaxrs.htm
+ - https://javabrains.io/courses/javaee_jaxrs
+ - https://docs.jboss.org/hibernate/orm/3.3/reference/en-US/html/tutorial.html
+ - https://spring.io/guides/gs/consuming-rest-angularjs
