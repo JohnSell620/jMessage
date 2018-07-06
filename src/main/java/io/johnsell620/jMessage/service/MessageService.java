@@ -54,14 +54,14 @@ public class MessageService {
 	public List<Message> getAllMessages() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from messages");
+		Query query = session.createQuery("from Message");
 		query.setCacheable(true);
 		session.getTransaction().commit();
-		session.close();
 		
 		//TODO needs to be safer
 		@SuppressWarnings("unchecked")
-		List<Message> list = Collections.checkedList(query.list(), Message.class); 
+		List<Message> list = Collections.checkedList(query.list(), Message.class);
+		session.close(); 
 		return list;
 	}
 	

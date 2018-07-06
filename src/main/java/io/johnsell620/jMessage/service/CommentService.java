@@ -60,11 +60,11 @@ public class CommentService {
 		Query query = session.createQuery("from comments");
 		query.setCacheable(true);
 		session.getTransaction().commit();
-		session.close();
 		
 		//TODO needs to be safer
 		@SuppressWarnings("unchecked")
-		List<Comment> list = Collections.checkedList(query.list(), Comment.class); 
+		List<Comment> list = Collections.checkedList(query.list(), Comment.class);
+		session.close(); 
 		return list;
 	}
 	

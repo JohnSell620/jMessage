@@ -64,11 +64,11 @@ public class LinkService {
 		Query query = session.createQuery("from links");
 		query.setCacheable(true);
 		session.getTransaction().commit();
-		session.close();
 		
 		//TODO needs to be safer
 		@SuppressWarnings("unchecked")
-		List<Link> list = Collections.checkedList(query.list(), Link.class); 
+		List<Link> list = Collections.checkedList(query.list(), Link.class);
+		session.close(); 
 		return list;
 	}
 }

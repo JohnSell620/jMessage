@@ -29,8 +29,9 @@ public class UserService {
 				
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query user = session.createQuery("from users where username = :username")
-						.setParameter("username", username);
+		Object user = session.createQuery("from User where username = :username")
+						.setParameter("username", username)
+						.uniqueResult();
 		session.getTransaction().commit();
 		session.close();
 		
@@ -72,7 +73,7 @@ public class UserService {
 		User user = (User) session.get(User.class, username);
 		session.getTransaction().commit();
 		session.beginTransaction();
-		session.createQuery("delete from users where username = :username")
+		session.createQuery("delete from User where username = :username")
 			.setParameter("username", username)
 			.executeUpdate();
 		session.getTransaction().commit();	
@@ -83,14 +84,14 @@ public class UserService {
 	public List<User> getAllUsers() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from users");
+		Query query = session.createQuery("from User");
 		query.setCacheable(true);
 		session.getTransaction().commit();
-		session.close();
 		
 		//TODO needs to be safer
 		@SuppressWarnings("unchecked")
-		List<User> list = Collections.checkedList(query.list(), User.class); 
+		List<User> list = Collections.checkedList(query.list(), User.class);
+		session.close(); 
 		return list;
 	}
 
