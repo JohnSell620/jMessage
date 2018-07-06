@@ -19,7 +19,8 @@ import io.johnsell620.jMessage.service.LinkService;
  * @author johnny
  *
  */
-@Path("/links")
+@Path("/")
+//@Path("/secured/links")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class LinkResource {

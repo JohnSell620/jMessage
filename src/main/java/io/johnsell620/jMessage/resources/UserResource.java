@@ -20,6 +20,7 @@ import io.johnsell620.jMessage.service.UserService;
  *
  */
 @Path("/users")
+//@Path("/secured/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource {

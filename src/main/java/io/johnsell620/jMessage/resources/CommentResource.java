@@ -15,7 +15,8 @@ import javax.ws.rs.core.MediaType;
 import io.johnsell620.jMessage.model.Comment;
 import io.johnsell620.jMessage.service.CommentService;
 
-@Path("/secured/comments")
+@Path("/comments")
+//@Path("/secured/comments")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CommentResource {

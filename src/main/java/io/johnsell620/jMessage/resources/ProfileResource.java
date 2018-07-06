@@ -14,7 +14,8 @@ import javax.ws.rs.core.MediaType;
 import io.johnsell620.jMessage.model.Profile;
 import io.johnsell620.jMessage.service.ProfileService;
 
-@Path("/secured/profiles")
+@Path("/profiles")
+//@Path("/secured/profiles")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ProfileResource {

@@ -99,46 +99,11 @@ io.johnsell620:jMessage:war:0.0.1-SNAPSHOT
 
 ## Development
 1. Clone the repository and import into eclipse IDE.
-2. Create the MySQL database with the following SQL code.
+2. Create the MySQL database with the following SQL code. **NB:** Only the first SQL statement is required since the tables will be updated automatically with Hibernate.
 ```
-CREATE DATABASE `jMessage` /*!40100 DEFAULT CHARACTER SET utf8 */;
-CREATE TABLE `comments` (
- `commentId` bigint(20) NOT NULL,
- `author` varchar(255) DEFAULT NULL,
- `created` datetime DEFAULT NULL,
- `message` varchar(255) DEFAULT NULL,
- `messageId` bigint(20) DEFAULT NULL,
- PRIMARY KEY (`commentId`),
- KEY `FKbsb2wy0u2qx2s0ersm2dpgx73` (`messageId`),
- CONSTRAINT `FKbsb2wy0u2qx2s0ersm2dpgx73` FOREIGN KEY (`messageId`) REFERENCES `messages` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `links` (
- `linkId` bigint(20) NOT NULL,
- `link` varchar(255) DEFAULT NULL,
- `messageId` bigint(20) DEFAULT NULL,
- `rel` varchar(255) DEFAULT NULL,
- PRIMARY KEY (`linkId`),
- KEY `FK2eiob8y2q5kusmqhiden5d5pm` (`messageId`),
- CONSTRAINT `FK2eiob8y2q5kusmqhiden5d5pm` FOREIGN KEY (`messageId`) REFERENCES `messages` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `messages` (
- `id` bigint(20) NOT NULL,
- `author` varchar(255) DEFAULT NULL,
- `created` datetime DEFAULT NULL,
- `message` varchar(255) DEFAULT NULL,
- PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `profiles` (
- `profileId` bigint(20) NOT NULL AUTO_INCREMENT,
- `created` datetime DEFAULT NULL,
- `firstname` varchar(255) DEFAULT NULL,
- `lastname` varchar(255) DEFAULT NULL,
- `profilename` varchar(255) DEFAULT NULL,
- `user_id` bigint(20) DEFAULT NULL,
- PRIMARY KEY (`profileId`),
- KEY `FK410q61iev7klncmpqfuo85ivh` (`user_id`),
- CONSTRAINT `FK410q61iev7klncmpqfuo85ivh` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE DATABASE `jMessage` /*!40100 DEFAULT CHARACTER SET utf8 */
+USE `jMessage;
+
 CREATE TABLE `users` (
  `id` bigint(20) NOT NULL AUTO_INCREMENT,
  `pId` bigint(20) NOT NULL,
@@ -146,6 +111,48 @@ CREATE TABLE `users` (
  `username` varchar(255) DEFAULT NULL,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `profiles` (
+ `profileId` bigint(20) NOT NULL AUTO_INCREMENT,
+ `created` datetime DEFAULT NULL,
+ `firstName` varchar(255) DEFAULT NULL,
+ `lastName` varchar(255) DEFAULT NULL,
+ `profileName` varchar(255) DEFAULT NULL,
+ `user_id` bigint(20) DEFAULT NULL,
+ PRIMARY KEY (`profileId`),
+ KEY `FK-uniqueID` (`user_id`),
+ CONSTRAINT `FK-uniqueKey` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `messages` (
+ `id` bigint(20) NOT NULL,
+ `author` varchar(255) DEFAULT NULL,
+ `created` datetime DEFAULT NULL,
+ `message` varchar(255) DEFAULT NULL,
+ `profileId` bigint(20) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comments` (
+ `commentId` bigint(20) NOT NULL,
+ `author` varchar(255) DEFAULT NULL,
+ `created` datetime DEFAULT NULL,
+ `message` varchar(255) DEFAULT NULL,
+ `messageId` bigint(20) DEFAULT NULL,
+ PRIMARY KEY (`commentId`),
+ KEY `FK-uniqueKey` (`messageId`),
+ CONSTRAINT `FK-uniqueKey` FOREIGN KEY (`messageId`) REFERENCES `messages` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `links` (
+ `linkId` bigint(20) NOT NULL,
+ `link` varchar(255) DEFAULT NULL,
+ `messageId` bigint(20) DEFAULT NULL,
+ `rel` varchar(255) DEFAULT NULL,
+ PRIMARY KEY (`linkId`),
+ KEY `FK-uniqueKey` (`messageId`),
+ CONSTRAINT `FK-uniqueKey` FOREIGN KEY (`messageId`) REFERENCES `messages` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 3. Start server.
 4. Test.

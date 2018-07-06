@@ -52,7 +52,8 @@ import io.johnsell620.jMessage.resources.beans.MessageFilterBean;
 import io.johnsell620.jMessage.service.MessageService;
 
 
-@Path("/secured/messages")
+@Path("/messages")
+//@Path("/secured/messages")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
@@ -151,6 +152,11 @@ public class MessageResource {
 	@Path("/{messageId}/comments")
 	public CommentResource getCommentResource() {
 		return new CommentResource();
+	}
+	
+	@Path("/{messageId}/links")
+	public LinkResource getLinkResource() {
+		return new LinkResource();
 	}
 	
 }

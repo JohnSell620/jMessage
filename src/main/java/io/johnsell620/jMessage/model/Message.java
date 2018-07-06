@@ -1,5 +1,6 @@
 package io.johnsell620.jMessage.model;
 
+import io.johnsell620.jMessage.model.CustomCreatedDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
@@ -18,6 +20,9 @@ import javax.persistence.Cacheable;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 /**
  * 
  * @author johnny
@@ -31,9 +36,13 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Message {
 	
 	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy="increment")
 	private long id;
 	private String message;
 	private String author;
+	private long profileId;
+	@JsonDeserialize(using=CustomCreatedDate.class)
 	private Date created;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="messageId", cascade=CascadeType.ALL)
@@ -46,10 +55,11 @@ public class Message {
 	
 	public Message() {}
 	
-	public Message(long id, String message, String author) {
+	public Message(long id, String message, String author, long profileId) {
 		this.id = id;
 		this.message = message;
 		this.author = author;
+		this.profileId = profileId;
 		this.created = new Date();
 	}
 	
@@ -77,6 +87,12 @@ public class Message {
 	public void setAuthor(String author) {
 		this.author = author;
 	}	
+	public long getProfileId() {
+		return profileId;
+	}
+	public void setProfileId(long profileId) {
+		this.profileId = profileId;
+	}
 	@XmlTransient
 	public Map<Long, Comment> getComments() {
 		return comments;

@@ -1,8 +1,11 @@
 package io.johnsell620.jMessage.model;
 
+import io.johnsell620.jMessage.model.CustomCreatedDate;
 import java.util.Date;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,10 +26,11 @@ public class Profile {
 	private String profileName;
 	private String firstName;
 	private String lastName;
+	@JsonDeserialize(using=CustomCreatedDate.class)
+	private Date created;
 	
 	@OneToOne
 	private User user;
-	private Date created;
 	
 	
 	public Profile() {}

@@ -2,12 +2,14 @@ package io.johnsell620.jMessage.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Cacheable;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
 /**
  * 
  * @author johnny
@@ -20,6 +22,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Link {
 
 	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy="increment")
 	@Column(name="linkId")
 	private long id;
 	private String link;
