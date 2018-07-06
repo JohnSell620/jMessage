@@ -42,12 +42,30 @@ This RESTful API provides a web messaging service (like Twitter) built on the Ja
 |   |           ├── ServiceUtil.java
 |   |           └── UserService.java
 |   └── webapp
-|       ├── index.jsp
-|       └── WEB-INF
-|           └── web.xml
+|   |   ├── index.jsp
+|   |   └── WEB-INF
+|   |       └── web.xml
+|   └── tests
+|       ├── automated
+|       |   ├── test-result
+|       |   |   └── results.xml
+|       |   ├── test  
+|       |   |   ├── user_test.js
+|       |   |   └── profile_test.js
+|       |   ├── Dockerfile
+|       |   ├── entrypoint.sh
+|       |   └── package.json
+|       └── postman
+|           ├── GET_message.js
+|           ├── GET_profile.js
+|           ├── GET_users.js
+|           ├── POST_message.js
+|           └── jMessage.postman_test_run.json
+|
 ├── .classpath
 ├── .gitignore
 ├── .project
+├── LICENSE
 ├── README.md
 └── pom.xml
 ```
