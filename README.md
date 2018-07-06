@@ -100,7 +100,7 @@ io.johnsell620:jMessage:war:0.0.1-SNAPSHOT
 ## Development
 1. Clone the repository and import into eclipse IDE.
 2. Create the MySQL database with the following SQL code. **NB:** Only the first SQL statement is required since the tables will be updated automatically with Hibernate.
-```
+```sql
 CREATE DATABASE `jMessage` /*!40100 DEFAULT CHARACTER SET utf8 */
 USE `jMessage;
 
