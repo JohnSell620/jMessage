@@ -1,6 +1,6 @@
 package io.johnsell620.jMessage.model;
 
-import io.johnsell620.jMessage.model.CustomCreatedDate;
+//import io.johnsell620.jMessage.model.CustomCreatedDate;
 import java.util.Date;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 

@@ -1,5 +1,5 @@
 ## Overview
-This RESTful API provides a web messaging service (like Twitter) built on the Java EE platform. The Jersey library is used to implement the JAX-RS API for RESTful web services. Persistence is achieved using the object-relational mapping (ORM) library Hibernate. Data is stored in a MySQL database. Maven is used for build automation. Testing was done using Postman.
+This RESTful API provides a web messaging service (like MSFT Teams) built on the Java EE platform. The Jersey library is used to implement the JAX-RS API for RESTful web services. Persistence is achieved using the object-relational mapping (ORM) library Hibernate. Data is stored in a MySQL database. Maven is used for build automation. Testing was done using Postman.
 
 ## File Structure
 ```
@@ -68,51 +68,6 @@ This RESTful API provides a web messaging service (like Twitter) built on the Ja
 ├── LICENSE
 ├── README.md
 └── pom.xml
-```
-
-## Maven Dependency Tree:
-```
---- maven-dependency-plugin:2.8:tree (default-cli) @ jMessage ---
-io.johnsell620:jMessage:war:0.0.1-SNAPSHOT
-+- org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.23:compile
-|  +- org.glassfish.hk2.external:javax.inject:jar:2.4.0-b34:compile
-|  +- org.glassfish.jersey.core:jersey-common:jar:2.23:compile
-|  |  +- javax.annotation:javax.annotation-api:jar:1.2:compile
-|  |  +- org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.23:compile
-|  |  +- org.glassfish.hk2:hk2-api:jar:2.4.0-b34:compile
-|  |  |  +- org.glassfish.hk2:hk2-utils:jar:2.4.0-b34:compile
-|  |  |  \- org.glassfish.hk2.external:aopalliance-repackaged:jar:2.4.0-b34:compile
-|  |  +- org.glassfish.hk2:hk2-locator:jar:2.4.0-b34:compile
-|  |  \- org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
-|  +- org.glassfish.jersey.core:jersey-server:jar:2.23:compile
-|  |  +- org.glassfish.jersey.core:jersey-client:jar:2.23:compile
-|  |  +- org.glassfish.jersey.media:jersey-media-jaxb:jar:2.23:compile
-|  |  \- javax.validation:validation-api:jar:1.1.0.Final:compile
-|  \- javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
-+- org.glassfish.jersey.media:jersey-media-json-jackson:jar:2.23.2:compile
-|  +- org.glassfish.jersey.ext:jersey-entity-filtering:jar:2.23:compile
-|  +- com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.5.4:compile
-|  |  +- com.fasterxml.jackson.core:jackson-core:jar:2.5.4:compile
-|  |  \- com.fasterxml.jackson.core:jackson-databind:jar:2.5.4:compile
-|  +- com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.5.4:compile
-|  |  \- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.5.4:compile
-|  \- com.fasterxml.jackson.core:jackson-annotations:jar:2.5.4:compile
-+- org.hibernate:hibernate-core:jar:5.1.10.Final:compile
-|  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
-|  +- org.hibernate.javax.persistence:hibernate-jpa-2.1-api:jar:1.0.0.Final:compile
-|  +- org.javassist:javassist:jar:3.20.0-GA:compile
-|  +- antlr:antlr:jar:2.7.7:compile
-|  +- org.apache.geronimo.specs:geronimo-jta_1.1_spec:jar:1.1.1:compile
-|  +- org.jboss:jandex:jar:2.0.3.Final:compile
-|  +- com.fasterxml:classmate:jar:1.3.0:compile
-|  +- dom4j:dom4j:jar:1.6.1:compile
-|  |  \- xml-apis:xml-apis:jar:1.0.b2:compile
-|  \- org.hibernate.common:hibernate-commons-annotations:jar:5.0.1.Final:compile
-+- mysql:mysql-connector-java:jar:5.1.44:compile
-+- net.sf.ehcache:ehcache:jar:2.10.4:compile
-|  \- org.slf4j:slf4j-api:jar:1.7.7:compile
-+- org.hibernate:hibernate-ehcache:jar:5.1.10.Final:compile
-\- commons-logging:commons-logging:jar:1.2:compile
 ```
 
 ## Development

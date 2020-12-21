@@ -26,17 +26,19 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
 		System.out.println("Request filter");
 		System.out.println(date + " Headers: " + requestContext.getHeaders());
 		
-//		File file = new File("requestlogs.txt");
-//		if (!file.exists()) file.createNewFile();
-//		
-//		try(FileWriter fw = new FileWriter("./requestlogs.txt", true);
-//			    BufferedWriter bw = new BufferedWriter(fw);
-//			    PrintWriter out = new PrintWriter(bw))
-//		{
-//		    out.println("Headers: " + requestContext.getHeaders());
-//		} catch (IOException e) {
-//		    e.printStackTrace();
-//		}
+		if (false) {
+			File file = new File("requestlogs.txt");
+			if (!file.exists()) file.createNewFile();
+			
+			try(FileWriter fw = new FileWriter("./requestlogs.txt", true);
+				    BufferedWriter bw = new BufferedWriter(fw);
+				    PrintWriter out = new PrintWriter(bw))
+			{
+			    out.println("Headers: " + requestContext.getHeaders());
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -45,17 +47,19 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
 		System.out.println("Response filter");
 		System.out.println(date + " Headers: " + responseContext.getHeaders());
 		
-//		File file = new File("./responselogs.txt");
-//		if (!file.exists()) file.createNewFile();
-//		
-//		try(FileWriter fw = new FileWriter("responselogs.txt", true);
-//			    BufferedWriter bw = new BufferedWriter(fw);
-//			    PrintWriter out = new PrintWriter(bw))
-//		{
-//		    out.println("Headers: " + requestContext.getHeaders());
-//		} catch (IOException e) {
-//		    e.printStackTrace();
-//		}		
+		if (false) {
+			File file = new File("./responselogs.txt");
+			if (!file.exists()) file.createNewFile();
+			
+			try(FileWriter fw = new FileWriter("responselogs.txt", true);
+				    BufferedWriter bw = new BufferedWriter(fw);
+				    PrintWriter out = new PrintWriter(bw))
+			{
+			    out.println("Headers: " + requestContext.getHeaders());
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+		}
 	}
 
 }

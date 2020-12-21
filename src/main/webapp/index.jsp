@@ -1,6 +1,6 @@
 <html>
 <body>
-    <h2>RESTful API for web messaging apps!</h2>
+    <h2>RESTful API for web messaging applications!</h2>
 <!-- <p><a href="webapi/myresource">Jersey resource</a> -->
     <p>Visit <a href="http://johnsell620.github.io">JohnSell620.github.io</a>
     for more projects.
