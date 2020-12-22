@@ -1,5 +1,5 @@
 ## Overview
-This RESTful API provides a web messaging service (like MSFT Teams) built on the Java EE platform. The Jersey library is used to implement the JAX-RS API for RESTful web services. Persistence is achieved using the object-relational mapping (ORM) library Hibernate. Data is stored in a MySQL database. Maven is used for build automation. Testing was done using Postman.
+A web messaging application (like MSFT Teams) with React frontend and RESTful API for backend built on the Java EE platform. The Jersey library is used to implement the JAX-RS API for RESTful web services. Data stored in MySQL database, persisted using the Hibernate ORM library. Maven used for build automation. Testing done using Postman.
 
 ## File Structure
 ```
@@ -134,4 +134,3 @@ CREATE TABLE `links` (
  - https://docs.oracle.com/javaee/7/tutorial/jaxrs.htm
  - https://javabrains.io/courses/javaee_jaxrs
  - https://docs.jboss.org/hibernate/orm/3.3/reference/en-US/html/tutorial.html
- - https://spring.io/guides/gs/consuming-rest-angularjs

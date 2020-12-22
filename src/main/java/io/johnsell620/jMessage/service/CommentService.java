@@ -5,7 +5,9 @@ import java.util.List;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
 import org.hibernate.Query;
+//import org.hibernate.query.Query;
 import org.hibernate.Session;
 import io.johnsell620.jMessage.dao.HibernateUtil;
 import io.johnsell620.jMessage.exception.DataNotFoundException;
@@ -57,7 +59,7 @@ public class CommentService {
 	public List<Comment> getAllComments(long messageId) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from comments");
+		Query<Comment> query = session.createQuery("from comments");
 		query.setCacheable(true);
 		session.getTransaction().commit();
 		

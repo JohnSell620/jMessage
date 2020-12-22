@@ -58,7 +58,7 @@ public class MessageService {
 		query.setCacheable(true);
 		session.getTransaction().commit();
 		
-		//TODO needs to be safer
+		//TODO needs security improvement
 		@SuppressWarnings("unchecked")
 		List<Message> list = Collections.checkedList(query.list(), Message.class);
 		session.close(); 

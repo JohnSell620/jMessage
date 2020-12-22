@@ -2,3 +2,29 @@
 /home
 /tests/automated/node_modules
 /src/main/java/io/johnsell620/jMessage/app
+
+## Frontend
+# dependencies
+src/main/ui/node_modules/
+src/main/ui/.pnp
+.pnp.js
+
+# testing
+/src/main/ui/coverage
+
+# production
+/src/main/ui/build
+
+# misc
+/src/main/ui/.DS_Store
+/src/main/ui/.env.local
+/src/main/ui/.env.development.local
+/src/main/ui/.env.test.local
+/src/main/ui/.env.production.local
+
+/src/main/ui/npm-debug.log*
+/src/main/ui/yarn-debug.log*
+/src/main/ui/yarn-error.log*
+
+/src/main/ui/package-lock.json
+/src/main/ui/.eslintcache
