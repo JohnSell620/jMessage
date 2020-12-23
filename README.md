@@ -1,5 +1,7 @@
 ## Overview
-A web messaging application (like MSFT Teams) with React frontend and RESTful API for backend built on the Java EE platform. The Jersey library is used to implement the JAX-RS API for RESTful web services. Data stored in MySQL database, persisted using the Hibernate ORM library. Maven used for build automation. Testing done using Postman.
+Web messaging application with React frontend and RESTful backend service built on OpenJDK 11. Jersey library used to implement the JAX-RS API for RESTful web services. Data stored in MySQL database, persisted using the Hibernate ORM library. Maven used for build automation. Testing done using Postman.
+
+Separation of frontend and backend in this way ensures good testability of the application.
 
 ## File Structure
 ```
@@ -41,6 +43,16 @@ A web messaging application (like MSFT Teams) with React frontend and RESTful AP
 |   |           ├── ProfileService.java
 |   |           ├── ServiceUtil.java
 |   |           └── UserService.java
+|   └── ui
+|   |   ├── public
+|   |   |   └── index.html
+|   |   └── src
+|   |       └── features
+|   |           ├── conversation
+|   |           ├── thread
+|   |           ├── user
+|   |           ├── App.js
+|   |           └── index.js
 |   └── webapp
 |   |   ├── index.jsp
 |   |   └── WEB-INF

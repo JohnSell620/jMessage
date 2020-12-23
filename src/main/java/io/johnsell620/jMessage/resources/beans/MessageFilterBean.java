@@ -27,6 +27,4 @@ public class MessageFilterBean {
 		this.size = size;
 	}
 	
-	
-
 }

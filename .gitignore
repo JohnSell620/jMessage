@@ -2,6 +2,8 @@
 /home
 /tests/automated/node_modules
 /src/main/java/io/johnsell620/jMessage/app
+*backup
+Thread.java
 
 ## Frontend
 # dependencies
@@ -10,7 +12,7 @@ src/main/ui/.pnp
 .pnp.js
 
 # testing
-/src/main/ui/coverage
+/src/main/ui/src/main
 
 # production
 /src/main/ui/build
