@@ -1,16 +1,29 @@
 import React from 'react';
 
 class User extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className="user-inlist">
-        <span className="user-info">{this.props.user.profileName}</span>
-        <button onClick={() => this.onChat()}>Chat</button>
+        <div className="user-info">
+          {this.props.profileName}
+          <button onClick={() => this.onChat()}>Chat</button>
+        </div>
       </div>
     );
   }
   onChat() {
-    console.log("Creating new chat thread");
+    if (this.isExistingConversation(this.props.profileName)) {
+      // TODO
+      console.log("TODO");
+    } else {
+      console.log("Creating new chat thread");
+    }
+  }
+  isExistingConversation(user) {
+    return true;
   }
 }
 

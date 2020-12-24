@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import UserList from './features/users/UserList'
-import ClientService from './ClientService'
-import logo from './logo.svg';
+
+import Conversation from './features/conversation/Conversation';
+import UserList from './features/users/UserList';
+import ClientService from './ClientService';
 import './App.css';
 
 class App extends Component {
@@ -19,12 +20,18 @@ class App extends Component {
     this.clientService.getUserProfiles().then(userProfiles => {
       this.setState({users: userProfiles})
     });
+    this.clientService.getConversationMessages().then(messages => {
+      this.setState({conversation: messages})
+    });
   }
 
   render() {
     return (
-      <UserList users={this.state.users}/>
-    )
+      <div className="page">
+        <Conversation messages={this.state.conversation}/>
+        <UserList users={this.state.users}/>
+      </div>
+    );
   }
 }
 

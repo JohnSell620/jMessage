@@ -72,19 +72,18 @@ public class MessageResource {
 		}
 		return messageService.getAllMessages();
 	}
-
-	@GET
-	@Produces(MediaType.TEXT_XML)	
-	public List<Message> getXmlMessages(@BeanParam MessageFilterBean filterBean) {
-		System.out.println("XML method called");
-		if (filterBean.getYear() > 0) {
-			return messageService.getAllMessagesForYear(filterBean.getYear());
-		}
-		if (filterBean.getStart() > 0 && filterBean.getSize() > 0) {
-			return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
-		}
-		return messageService.getAllMessages();
-	}
+	
+	/*
+	 * @GET
+	 * 
+	 * @Produces(MediaType.TEXT_XML) public List<Message> getXmlMessages(@BeanParam
+	 * MessageFilterBean filterBean) { System.out.println("XML method called"); if
+	 * (filterBean.getYear() > 0) { return
+	 * messageService.getAllMessagesForYear(filterBean.getYear()); } if
+	 * (filterBean.getStart() > 0 && filterBean.getSize() > 0) { return
+	 * messageService.getAllMessagesPaginated(filterBean.getStart(),
+	 * filterBean.getSize()); } return messageService.getAllMessages(); }
+	 */
 	
 	@POST
 	public Response addMessage(Message message, @Context UriInfo uriInfo) {

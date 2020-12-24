@@ -7,12 +7,11 @@ class UserList extends React.Component {
   }
   render() {
     const users = this.props.users.map(user =>
-      <User key={user._links.self.href} userProfile={user}/>
+      <User key={user.id} profileName={user.profileName}/>
     );
     return (
       <div className="user-list">
         {users}
-        <div>UserListTest</div>
       </div>
     )
   }

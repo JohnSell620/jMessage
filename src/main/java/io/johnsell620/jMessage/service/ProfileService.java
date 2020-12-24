@@ -79,7 +79,7 @@ public class ProfileService {
 //		session.flush();
 		session.getTransaction().commit();
 //		session.close();
-		
+				
 		//TODO needs to be safer
 		@SuppressWarnings("unchecked")
 		List<Profile> list = Collections.checkedList(query.list(), Profile.class); 
