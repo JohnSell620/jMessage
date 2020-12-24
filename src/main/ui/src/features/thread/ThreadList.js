@@ -1,6 +1,6 @@
 import React from 'react';
 import Thread from './Thread';
-import './Thread.scss'
+import './Thread.scss';
 
 class ThreadList extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class ThreadList extends React.Component {
     );
     return (
       <div className="thread-list">
-        <div className="thread-list-header">Thread's Users</div>
+        <div className="thread-list-header">Threads</div>
         {threads}
       </div>
     )

@@ -2,7 +2,12 @@
 
 div.user-list {
   display: table-cell;
+
   div.user-list-header {
     background-color: $aqua;
+  }
+
+  div.user-inlist {
+    text-align: center;
   }
 }

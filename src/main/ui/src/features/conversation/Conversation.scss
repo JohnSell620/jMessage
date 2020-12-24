@@ -16,6 +16,10 @@ div.conversation {
     -webkit-box-shadow: 0 0 3px $slate;
     -moz-box-shadow: 0 0 3px $slate;
 
+    span.message-author {
+      padding: 0px 3px;
+    }
+
   }
 
   div.enter-text-window {

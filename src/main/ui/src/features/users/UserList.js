@@ -1,5 +1,6 @@
 import React from 'react';
 import User from './User';
+import './Users.scss';
 
 class UserList extends React.Component {
   render() {
@@ -8,7 +9,7 @@ class UserList extends React.Component {
     );
     return (
       <div className="user-list">
-        <div className="user-list-header">Threads</div>
+        <div className="user-list-header">Thread's Users</div>
         {users}
       </div>
     )

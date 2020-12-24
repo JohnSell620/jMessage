@@ -1,4 +1,5 @@
 import React from 'react';
+import './Thread.scss';
 
 class Thread extends React.Component {
   render() {

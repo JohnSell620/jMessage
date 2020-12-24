@@ -2,7 +2,12 @@
 
 div.thread-list {
   display: table-cell;
+
   div.thread-list-header {
     background-color: $aqua;
+  }
+
+  div.thread-title {
+    text-align: left;
   }
 }

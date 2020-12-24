@@ -1,4 +1,5 @@
 import React from 'react';
+import './Users.scss';
 
 class User extends React.Component {
   render() {
