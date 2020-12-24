@@ -1,7 +1,7 @@
 ## Overview
 Web messaging application with React frontend and RESTful backend service built on OpenJDK 11. Jersey library used to implement the JAX-RS API for RESTful web services. Data stored in MySQL database, persisted using the Hibernate ORM library. Maven used for build automation. Testing done using Postman.
 
-Separation of frontend and backend in this way ensures good testability of the application.
+Separation of UI and service in this way ensures good testability of the application.
 
 ## File Structure
 ```

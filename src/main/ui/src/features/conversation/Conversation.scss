@@ -1,0 +1,28 @@
+@import "../../styles/variables";
+
+div.conversation {
+  display: table-cell;
+  background-color: $white;
+  -webkit-box-shadow: 0 8px 6px -6px $screen;
+  -moz-box-shadow: 0 8px 6px -6px $screen;
+  box-shadow: 0 8px 6px -6px $screen;
+
+  div.conversation-header {
+    background-color: $purpbleu;
+  }
+
+  div.message-content {
+    box-shadow: 0 0 3px $slate;
+    -webkit-box-shadow: 0 0 3px $slate;
+    -moz-box-shadow: 0 0 3px $slate;
+
+  }
+
+  div.enter-text-window {
+    background-color: $purpal;
+    input.text {
+      background-color: $slate;
+      text-decoration-color: $brown;
+    }
+  }
+}

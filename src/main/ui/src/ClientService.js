@@ -1,11 +1,14 @@
 
 class ClientService {
-  constructor() {}
   async getUserProfiles() {
     return getData("/webapi/profiles/");
   }
   async getConversationMessages() {
     return getData("/webapi/messages/");
+  }
+  async getThreads() {
+    // TODO create threads table in MySQL
+    return getThreadData("/webapi/threads/");
   }
 }
 
@@ -35,6 +38,67 @@ function getData(url) {
   .catch(error => {
     console.log(error);
   });
+}
+
+function getThreadData(url) {
+  return [
+    {
+      id: 1,
+      title: "Science",
+      users: [
+        {
+          id: 2,
+          profileName: "john5"
+        },
+        {
+          id: 3,
+          profileName: "jim2"
+        }
+      ]
+    },
+      {
+        id: 2,
+        title: "Sports",
+        users: [
+          {
+            id: 1,
+            profileName: "pat7"
+          },
+          {
+            id: 3,
+            profileName: "jim2"
+          }
+        ]
+      },
+        {
+          id: 3,
+          title: "Games",
+          users: [
+            {
+              id: 2,
+              profileName: "john5"
+            },
+            {
+              id: 4,
+              profileName: "jack2"
+            }
+          ]
+        },
+          {
+            id: 4,
+            title: "Life",
+            users: [
+              {
+                id: 1,
+                profileName: "pat7"
+              },
+              {
+                id: 2,
+                profileName: "john5"
+              }
+            ]
+          }
+  ];
 }
 
 export default ClientService;

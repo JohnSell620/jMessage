@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+div.thread-list {
+  display: table-cell;
+  div.thread-list-header {
+    background-color: $aqua;
+  }
+}

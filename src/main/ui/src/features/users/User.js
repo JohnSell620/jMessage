@@ -1,28 +1,24 @@
 import React from 'react';
 
 class User extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="user-inlist">
-        <div className="user-info">
+        <div className="user-info" onClick={() => this.highlightPost()}>
           {this.props.profileName}
-          <button onClick={() => this.onChat()}>Chat</button>
         </div>
       </div>
     );
   }
-  onChat() {
-    if (this.isExistingConversation(this.props.profileName)) {
+  highlightPost() {
+    if (this.postExists(this.props.profileName)) {
       // TODO
-      console.log("TODO");
+      console.log("TODO: highlight and center clicked user's latest post in thread...");
     } else {
-      console.log("Creating new chat thread");
+      console.log("No posts...");
     }
   }
-  isExistingConversation(user) {
+  postExists(user) {
     return true;
   }
 }

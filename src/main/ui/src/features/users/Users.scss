@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+div.user-list {
+  display: table-cell;
+  div.user-list-header {
+    background-color: $aqua;
+  }
+}
