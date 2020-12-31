@@ -60,30 +60,31 @@ public class MessageResource {
 	
 	MessageService messageService = new MessageService();
 		
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Message> getJsonMessages(@BeanParam MessageFilterBean filterBean) {
-		System.out.println("JSON method called");
-		if (filterBean.getYear() > 0) {
-			return messageService.getAllMessagesForYear(filterBean.getYear());
-		}
-		if (filterBean.getStart() > 0 && filterBean.getSize() > 0) {
-			return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
-		}
-		return messageService.getAllMessages();
-	}
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public List<Message> getJsonMessages(@BeanParam MessageFilterBean filterBean) {
+//		System.out.println("JSON method called");
+//		if (filterBean.getYear() > 0) {
+//			return messageService.getAllMessagesForYear(filterBean.getYear());
+//		}
+//		if (filterBean.getStart() > 0 && filterBean.getSize() > 0) {
+//			return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
+//		}
+//		return messageService.getAllMessages();
+//	}	
 	
-	/*
-	 * @GET
-	 * 
-	 * @Produces(MediaType.TEXT_XML) public List<Message> getXmlMessages(@BeanParam
-	 * MessageFilterBean filterBean) { System.out.println("XML method called"); if
-	 * (filterBean.getYear() > 0) { return
-	 * messageService.getAllMessagesForYear(filterBean.getYear()); } if
-	 * (filterBean.getStart() > 0 && filterBean.getSize() > 0) { return
-	 * messageService.getAllMessagesPaginated(filterBean.getStart(),
-	 * filterBean.getSize()); } return messageService.getAllMessages(); }
-	 */
+//	@GET
+//	@Produces(MediaType.TEXT_XML)
+//	public List<Message> getXmlMessages(@BeanParam MessageFilterBean filterBean) {
+//		System.out.println("XML method called");
+//		if (filterBean.getYear() > 0) {
+//			return messageService.getAllMessagesForYear(filterBean.getYear());
+//		}
+//		if (filterBean.getStart() > 0 && filterBean.getSize() > 0) {
+//			return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
+//		}
+//		return messageService.getAllMessages();
+//	}
 	
 	@POST
 	public Response addMessage(Message message, @Context UriInfo uriInfo) {
@@ -109,17 +110,17 @@ public class MessageResource {
 		messageService.removeMessage(id);
 	}	
 	
-	@GET
-	@Path("/{messageId}")
-	public Message getMessage(@PathParam("messageId") long id, @Context UriInfo uriInfo) { //messageId is a string but Jersey will accept long
-		Message message = messageService.getMessage(id);
-		String uri = getUriForSelf(uriInfo, message);
-		message.addLink(uri, "self");
-		message.addLink(getUriForProfile(uriInfo, message), "profile");
-		message.addLink(getUriForComments(uriInfo, message), "comments");
-		
-		return message;
-	}
+//	@GET
+//	@Path("/{messageId}")
+//	public Message getMessage(@PathParam("messageId") long id, @Context UriInfo uriInfo) { //messageId is a string but Jersey will accept long
+//		Message message = messageService.getMessage(id);
+//		String uri = getUriForSelf(uriInfo, message);
+//		message.addLink(uri, "self");
+//		message.addLink(getUriForProfile(uriInfo, message), "profile");
+//		message.addLink(getUriForComments(uriInfo, message), "comments");
+//		
+//		return message;
+//	}
 	
 	private String getUriForComments(UriInfo uriInfo, Message message) {
 		URI uri = uriInfo.getBaseUriBuilder()
@@ -156,6 +157,14 @@ public class MessageResource {
 	@Path("/{messageId}/links")
 	public LinkResource getLinkResource() {
 		return new LinkResource();
+	}
+
+	@GET
+	@Path("/{threadName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Message> getThreadMessages(@PathParam("threadName") String threadName, @Context UriInfo uriInfo) {
+		System.out.println("JSON method called");
+		return messageService.getThreadMessages(threadName);
 	}
 	
 }

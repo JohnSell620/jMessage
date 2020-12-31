@@ -3,7 +3,6 @@
 /tests/automated/node_modules
 /src/main/java/io/johnsell620/jMessage/app
 *backup
-Thread.java
 
 ## Frontend
 # dependencies

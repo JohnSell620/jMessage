@@ -27,6 +27,7 @@
     	<mapping class="io.johnsell620.jMessage.model.Link"/> 
     	<mapping class="io.johnsell620.jMessage.model.User"/> 
     	<mapping class="io.johnsell620.jMessage.model.Profile"/> 
+    	<mapping class="io.johnsell620.jMessage.model.Thread"/> 
     	
     </session-factory>
 </hibernate-configuration>

@@ -7,6 +7,7 @@ import io.johnsell620.jMessage.model.Comment;
 import io.johnsell620.jMessage.model.Link;
 import io.johnsell620.jMessage.model.Message;
 import io.johnsell620.jMessage.model.Profile;
+import io.johnsell620.jMessage.model.Thread;
 /**
  * 
  * @author johnny
@@ -23,6 +24,9 @@ public class ServiceUtil {
 			session.beginTransaction();
 			if (objectType == "Message")	{
 				val = (Message) session.get(Message.class, id);
+			}
+			else if (objectType == "Thread") {
+				val = (Thread) session.get(Thread.class, id);
 			}
 			else if (objectType == "Comment") {
 				val = (Comment) session.get(Comment.class, id);
@@ -63,6 +67,9 @@ public class ServiceUtil {
 			if (object instanceof Message) {
 				update = ((Message) object).getMessage();
 			}
+			if (object instanceof Thread) {
+				update = ((Thread) object).getThreadName();
+			}
 			else if (object instanceof Comment) {
 				update = ((Comment) object).getMessage();
 			}
@@ -91,6 +98,9 @@ public class ServiceUtil {
 			String table = null; 
 			if (objectType == "Message") {
 				table = "messages";
+			}
+			else if (objectType == "Thread") {
+				table = "threads";
 			}
 			else if (objectType == "Comment") {
 				table = "comments";

@@ -42,6 +42,7 @@ public class Message {
 	private String message;
 	private String author;
 	private long profileId;
+	private String threadName;
 	@JsonDeserialize(using=CustomCreatedDate.class)
 	private Date created;
 	
@@ -55,11 +56,12 @@ public class Message {
 	
 	public Message() {}
 	
-	public Message(long id, String message, String author, long profileId) {
+	public Message(long id, String message, String author, long profileId, String threadName) {
 		this.id = id;
 		this.message = message;
 		this.author = author;
 		this.profileId = profileId;
+		this.threadName = threadName;
 		this.created = new Date();
 	}
 	
@@ -92,6 +94,12 @@ public class Message {
 	}
 	public void setProfileId(long profileId) {
 		this.profileId = profileId;
+	}
+	public String getThreadName() {
+		return threadName;
+	}
+	public void setThreadName(String threadName) {
+		this.threadName = threadName;
 	}
 	@XmlTransient
 	public Map<Long, Comment> getComments() {

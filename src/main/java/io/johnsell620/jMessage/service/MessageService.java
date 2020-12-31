@@ -83,5 +83,18 @@ public class MessageService {
 		if (start + size > list.size()) return new ArrayList<Message>();
 		return list.subList(start, start + size);
 	}
-
+	
+	public List<Message> getThreadMessages(String threadName) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from Message as message where message.threadName = :threadName");
+		query.setCacheable(true);
+		session.getTransaction().commit();
+		
+		//TODO needs security improvement
+		@SuppressWarnings("unchecked")
+		List<Message> list = Collections.checkedList(query.list(), Message.class);
+		session.close(); 
+		return list;
+	}
 }
