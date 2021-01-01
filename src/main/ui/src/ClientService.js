@@ -3,8 +3,11 @@ class ClientService {
   async getUserProfiles() {
     return getData("/webapi/profiles/");
   }
-  async getConversationMessages() {
-    return getData("/webapi/messages/");
+  async getConversationMessages(thread) {
+    return getData("/webapi/messages/" + thread + "/");
+  }
+  async getConversationUsers(thread) {
+    return getData("/webapi/threads/" + thread + "/users");
   }
   async getThreads() {
     // TODO create threads table in MySQL

@@ -87,7 +87,8 @@ public class MessageService {
 	public List<Message> getThreadMessages(String threadName) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Message as message where message.threadName = :threadName");
+		Query query = session.createQuery("from Message m where m.threadName = :threadName");
+		query.setParameter("threadName", threadName);
 		query.setCacheable(true);
 		session.getTransaction().commit();
 		

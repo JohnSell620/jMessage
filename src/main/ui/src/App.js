@@ -20,12 +20,6 @@ class App extends Component {
     this.clientService.getThreads().then(threads => {
       this.setState({threads: threads})
     });
-    this.clientService.getUserProfiles().then(userProfiles => {
-      this.setState({users: userProfiles})
-    });
-    this.clientService.getConversationMessages().then(messages => {
-      this.setState({conversation: messages})
-    });
   }
 
   render() {

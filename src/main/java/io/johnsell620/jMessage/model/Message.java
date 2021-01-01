@@ -13,8 +13,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Cacheable;
 
@@ -42,9 +44,13 @@ public class Message {
 	private String message;
 	private String author;
 	private long profileId;
-	private String threadName;
+//	private String threadName;
 	@JsonDeserialize(using=CustomCreatedDate.class)
 	private Date created;
+	
+	@OneToOne
+	private Thread thread;
+	private String threadName;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="messageId", cascade=CascadeType.ALL)
 	@MapKeyColumn(name="commentId")
@@ -56,11 +62,12 @@ public class Message {
 	
 	public Message() {}
 	
-	public Message(long id, String message, String author, long profileId, String threadName) {
+	public Message(long id, String message, String author, long profileId, Thread thread, String threadName) {
 		this.id = id;
 		this.message = message;
 		this.author = author;
 		this.profileId = profileId;
+		this.thread = thread;
 		this.threadName = threadName;
 		this.created = new Date();
 	}
@@ -95,11 +102,11 @@ public class Message {
 	public void setProfileId(long profileId) {
 		this.profileId = profileId;
 	}
-	public String getThreadName() {
-		return threadName;
+	public Thread getThread() {
+		return thread;
 	}
-	public void setThreadName(String threadName) {
-		this.threadName = threadName;
+	public void setThread(Thread thread) {
+		this.thread = thread;
 	}
 	@XmlTransient
 	public Map<Long, Comment> getComments() {
@@ -120,6 +127,14 @@ public class Message {
 		link.setLink(url);
 		link.setRel(rel);
 		links.put(id, link);
+	}
+
+	public String getThreadName() {
+		return threadName;
+	}
+
+	public void setThreadName(String threadName) {
+		this.threadName = threadName;
 	}
 
 }

@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import io.johnsell620.jMessage.model.Thread;
 import io.johnsell620.jMessage.service.ThreadService;
+import io.johnsell620.jMessage.model.Profile;
 
 @Path("/threads")
 //@Path("/secured/threads")
@@ -49,6 +50,12 @@ public class ThreadResource {
 	@Path("/{threadName}")
 	public void deleteThread(@PathParam("threadName") String threadName) {
 		threadService.removeThread(threadName);
+	}
+	
+	@GET
+	@Path("/{threadName}/users")
+	public List<Profile> getThreadUsers(@PathParam("threadName") String threadName, Thread thread) {
+		return threadService.getThreadProfiles(threadName);
 	}
 
 }

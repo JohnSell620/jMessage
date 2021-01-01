@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import io.johnsell620.jMessage.dao.HibernateUtil;
 import io.johnsell620.jMessage.model.ErrorMessage;
 import io.johnsell620.jMessage.model.Thread;
+import io.johnsell620.jMessage.model.Profile;
 /**
  * 
  * @author johnny
@@ -76,6 +77,23 @@ public class ThreadService {
 		//TODO needs to be safer
 		@SuppressWarnings("unchecked")
 		List<Thread> list = Collections.checkedList(query.list(), Thread.class); 
+		session.close();
+		return list;
+	}
+	
+	public List<Profile> getThreadProfiles(String threadName) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		String queryStatement = "select distinct p from Profile p, Message m "
+				+ "where p.id = m.profileId and m.threadName = :threadName";
+		Query query = session.createQuery(queryStatement);
+		query.setParameter("threadName", threadName);
+		query.setCacheable(true);
+		session.getTransaction().commit();
+				
+		//TODO needs to be safer
+		@SuppressWarnings("unchecked")
+		List<Profile> list = Collections.checkedList(query.list(), Profile.class); 
 		session.close();
 		return list;
 	}
