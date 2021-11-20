@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+// import { Switch, Route } from 'react-router-dom';
 
 import Conversation from './features/conversation/Conversation';
 import ThreadList from './features/thread/ThreadList';
 import UserList from './features/users/UserList';
 import ClientService from './ClientService';
+// import LoginContainer from './features/controls/LoginContainer';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +16,8 @@ class App extends Component {
       conversation: [],
       users: []
     };
+    this.getConversationMessages = this.getConversationMessages.bind(this);
+    this.getConversationUsers = this.getConversationUsers.bind(this);
   }
 
   componentDidMount() {
@@ -22,10 +26,30 @@ class App extends Component {
     });
   }
 
+  getConversationMessages(thread) {
+    this.clientService.getConversationMessages(thread).then(conversation => {
+      this.setState({conversation: conversation})
+    });
+  }
+
+  getConversationUsers(thread) {
+    this.clientService.getConversationUsers(thread).then(users => {
+      this.setState({users: users})
+    });
+  }
+
   render() {
+    // return (
+    //   <div className="app-routes">
+    //     <Switch>
+    //       <Route path="/login" component={LoginContainer} />
+    //       <Route path="/" component={Cms} />
+    //     </Switch>
+    //   </div>
+    // );
     return (
       <div className="page">
-        <ThreadList threads={this.state.threads}/>
+        <ThreadList threads={this.state.threads} onGetConversationMessages={this.getConversationMessages} onGetConversationUsers={this.getConversationUsers}/>
         <Conversation messages={this.state.conversation}/>
         <UserList users={this.state.users}/>
       </div>

@@ -9,7 +9,7 @@ class UserList extends React.Component {
     );
     return (
       <div className="user-list">
-        <div className="user-list-header">Thread's Users</div>
+        <div className="user-list-header">Users</div>
         {users}
       </div>
     )

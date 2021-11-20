@@ -1,6 +1,7 @@
 @import "../../styles/variables";
 
 div.conversation {
+  position: relative;
   display: table-cell;
   background-color: $white;
   -webkit-box-shadow: 0 8px 6px -6px $screen;
@@ -9,6 +10,10 @@ div.conversation {
 
   div.conversation-header {
     background-color: $purpbleu;
+    padding: 10px 15px;
+    box-shadow: 0 0 3px $slate;
+    -webkit-box-shadow: 0 0 3px $slate;
+    -moz-box-shadow: 0 0 3px $slate;
   }
 
   div.message-content {
@@ -23,6 +28,9 @@ div.conversation {
   }
 
   div.enter-text-window {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
     background-color: $purpal;
     input.text {
       background-color: $slate;

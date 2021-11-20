@@ -20,7 +20,6 @@ class Conversation extends React.Component {
     			<input type="text" placeholder="Post text..." name="post" />
     			<input type="submit" value="Post"/>
         </div>
-
       </div>
     )
   }

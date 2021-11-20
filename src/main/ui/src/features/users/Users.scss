@@ -2,9 +2,16 @@
 
 div.user-list {
   display: table-cell;
+  box-shadow: 0 0 3px $slate;
+  -webkit-box-shadow: 0 0 3px $slate;
+  -moz-box-shadow: 0 0 3px $slate;
 
   div.user-list-header {
     background-color: $aqua;
+    padding: 10px 15px;
+    box-shadow: 0 0 3px 0 $slate;
+    -webkit-box-shadow: 0 0 3px $slate;
+    -moz-box-shadow: 0 0 3px $slate;
   }
 
   div.user-inlist {

@@ -1,20 +1,16 @@
 import React from 'react';
 import './Thread.scss';
-import ClientService from '../../ClientService';
+import Button from '../controls/Button';
 
 class Thread extends React.Component {
   render() {
     return (
       <div className="thread-inlist">
-        <div className="thread-title" onClick={() => this.getConversationAndUsers(this.props.title)}>
-          {this.props.title}
+        <div className="thread-title">
+          <Button label={this.props.title} variant="basic" getConversationMessages={() => this.props.onGetConversationMessages()} getConversationUsers={() => this.props.onGetConversationUsers()}/>
         </div>
       </div>
     );
-  }
-  getConversationAndUsers(thread) {
-      ClientService.getConversationMessages(thread);
-      ClientService.getConversationUsers(thread);
   }
 }
 
