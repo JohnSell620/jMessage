@@ -9,8 +9,8 @@ class Button extends React.Component {
   }
 
   handleClick() {
-    this.props.getConversationMessages(this.props.label);
-    this.props.getConversationUsers(this.props.label);
+    this.props.getConversationMessages();
+    this.props.getConversationUsers();
   }
 
   render() {
