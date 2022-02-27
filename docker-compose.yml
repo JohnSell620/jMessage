@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  api:
+    build:
+      context: ./api
+    image: openjdk:17-alpine-jmessage-api
+    container_name: jmessage-api
+    network_mode: "host"
+
+  db:
+    image: mysql:5.7-debian
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./api/mysql:/var/lib/mysql
+      - ./api/dump.sql:/docker-entrypoint-initdb.d/1-dump.sql
+    environment:
+      MYSQL_DATABASE: jmessage
+      MYSQL_ROOT_PASSWORD: root
+
+  ui:
+    build:
+      context: ./ui
+    image: node:alpine-jmessage-ui
+    container_name: jmessage-ui
+    network_mode: "host"
+
+# networks:
+#   host:
+#   msql:
+#     driver: bridge
+# volumes:
+#   mysql:

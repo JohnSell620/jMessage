@@ -1,7 +1,0 @@
-<testsuites name="Mocha Tests">
-  <testsuite name="Profiles" tests="1" errors="0" failures="1" skipped="0" timestamp="2018-07-06T23:20:11" time="25.021">
-    <testcase classname="Profiles" name="&quot;before all&quot; hook" time="25.01">
-      <failure message="Timeout of 25000ms exceeded. For async tests and hooks, ensure &quot;done()&quot; is called; if returning a Promise, ensure it resolves."></failure>
-    </testcase>
-  </testsuite>
-</testsuites>

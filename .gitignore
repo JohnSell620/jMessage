@@ -1,31 +1,54 @@
-/target
-/home
-/tests/automated/node_modules
-/src/main/java/io/johnsell620/jMessage/app
-*backup
+############ jMessage/api ############
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-## Frontend
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode
+
+### Docker ###
+mysql
+dump.sql
+
+############ jMessage/ui ############
 # dependencies
-src/main/ui/node_modules/
-src/main/ui/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # testing
-/src/main/ui/src/main
+coverage
 
 # production
-/src/main/ui/build
+build
 
 # misc
-/src/main/ui/.DS_Store
-/src/main/ui/.env.local
-/src/main/ui/.env.development.local
-/src/main/ui/.env.test.local
-/src/main/ui/.env.production.local
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-/src/main/ui/npm-debug.log*
-/src/main/ui/yarn-debug.log*
-/src/main/ui/yarn-error.log*
-
-/src/main/ui/package-lock.json
-/src/main/ui/.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
