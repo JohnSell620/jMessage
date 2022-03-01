@@ -33,6 +33,7 @@ package io.johnsell620.jMessage.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.annotation.Resource;
 // import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -47,18 +48,20 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.springframework.web.bind.annotation.RestController;
+
 import io.johnsell620.jMessage.model.Message;
 // import io.johnsell620.jMessage.resources.beans.MessageFilterBean;
 import io.johnsell620.jMessage.service.MessageService;
 
 
+@RestController
 @Path("/messages")
 //@Path("/secured/messages")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
 	
-	MessageService messageService = new MessageService();
+	@Resource(name = "messageService")
+	MessageService messageService;
 		
 //	@GET
 //	@Produces(MediaType.APPLICATION_JSON)
@@ -99,6 +102,7 @@ public class MessageResource {
 	
 	@PUT
 	@Path("/{messageId}")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Message updateMessage(@PathParam("messageId") long id, Message message) {
 		message.setId(id);
 		return messageService.updateMessage(message);
@@ -113,7 +117,7 @@ public class MessageResource {
 	@GET
 	@Path("/{messageId}")
 	public Message getMessage(@PathParam("messageId") long id, @Context UriInfo uriInfo) { //messageId is a string but Jersey will accept long
-		Message message = messageService.getMessage(id);
+		Message message = messageService.getMessage(id).get();
 		String uri = getUriForSelf(uriInfo, message);
 		message.addLink(uri, "self");
 		message.addLink(getUriForProfile(uriInfo, message), "profile");
@@ -163,7 +167,6 @@ public class MessageResource {
 	@Path("/{threadName}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getThreadMessages(@PathParam("threadName") String threadName, @Context UriInfo uriInfo) {
-		System.out.println("JSON method called");
 		return messageService.getThreadMessages(threadName);
 	}
 	

@@ -25,6 +25,8 @@ build/
 
 ### VS Code ###
 .vscode
+.archive
+.temp
 
 ### Docker ###
 mysql

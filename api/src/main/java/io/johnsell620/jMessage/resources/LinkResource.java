@@ -2,6 +2,7 @@ package io.johnsell620.jMessage.resources;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,7 +26,8 @@ import io.johnsell620.jMessage.service.LinkService;
 @Consumes(MediaType.APPLICATION_JSON)
 public class LinkResource {
 	
-	private LinkService linkService = new LinkService();
+	@Resource(name = "linkService")
+	private LinkService linkService;
 	
 	@GET
 	public List<Link> getAllLinks(@PathParam("messageId") long messageId) {
@@ -53,7 +55,7 @@ public class LinkResource {
 	@GET
 	@Path("/{linkId}")
 	public Link getLink(@PathParam("messageId") long messageId, @PathParam("linkId") long linkId) {
-		return linkService.getLink(messageId, linkId);
+		return linkService.getLink(messageId, linkId).get();
 	}
 
 }

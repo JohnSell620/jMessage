@@ -30,11 +30,11 @@ public class User {
 
 	public User() {}
 	
-	public User(String username, String password, long pId, Profile profile) {
+	public User(String username, String password, long pId) { //}, Profile profile) {
 		this.username = username;
 		this.password = password;
 		this.pId = pId;
-		this.profile = profile;
+		// this.profile = profile;
 	}
 	
 	public long getId() {

@@ -1,6 +1,9 @@
 package io.johnsell620.jMessage.resources;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,31 +14,35 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.web.bind.annotation.RestController;
+
 import io.johnsell620.jMessage.model.Profile;
 import io.johnsell620.jMessage.service.ProfileService;
 
+@RestController
 @Path("/profiles")
 //@Path("/secured/profiles")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class ProfileResource {
 	
-	private ProfileService profileService = new ProfileService();
+	@Resource(name = "profileService")
+	private ProfileService profileService;
 	
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Profile> getProfiles() {
 		return profileService.getAllProfiles();
 	}
 	
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Profile addProfile(Profile profile) {
 		return profileService.addProfile(profile);
 	}
 	
 	@GET
 	@Path("/{profileName}")
-	public Profile getProfile(@PathParam("profileName") String profileName) {
-		return profileService.getProfile(profileName);
+	public Optional<Profile> getProfile(@PathParam("profileId") Long profileId) {
+		return profileService.getProfile(profileId);
 	}
 	
 	@PUT

@@ -9,7 +9,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class JMessageApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		// SpringApplication.run(JMessageApplication.class, args);
 		new JMessageApplication().configure(new SpringApplicationBuilder(JMessageApplication.class)).run(args);
 	}
 	

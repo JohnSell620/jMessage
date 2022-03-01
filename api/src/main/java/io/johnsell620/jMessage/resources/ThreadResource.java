@@ -1,6 +1,9 @@
 package io.johnsell620.jMessage.resources;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,32 +14,36 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.web.bind.annotation.RestController;
+
 import io.johnsell620.jMessage.model.Thread;
 import io.johnsell620.jMessage.service.ThreadService;
 import io.johnsell620.jMessage.model.Profile;
 
+@RestController
 @Path("/threads")
 //@Path("/secured/threads")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class ThreadResource {
 	
-	private ThreadService threadService = new ThreadService();
+	@Resource(name = "threadService")
+	private ThreadService threadService;
 	
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Thread> getThreads() {
 		return threadService.getAllThreads();
 	}
 	
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Thread addThread(Thread thread) {
 		return threadService.addThread(thread);
 	}
 	
 	@GET
 	@Path("/{threadName}")
-	public Thread getThread(@PathParam("threadName") String threadName) {
-		return threadService.getThread(threadName);
+	public Optional<Thread> getThread(@PathParam("threadId") Long threadId) {
+		return threadService.getThread(threadId);
 	}
 	
 	@PUT
@@ -54,7 +61,7 @@ public class ThreadResource {
 	
 	@GET
 	@Path("/{threadName}/users")
-	public List<Profile> getThreadUsers(@PathParam("threadName") String threadName, Thread thread) {
+	public List<Profile> getThreadUsers(@PathParam("threadName") String threadName) {
 		return threadService.getThreadProfiles(threadName);
 	}
 
