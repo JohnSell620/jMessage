@@ -24,18 +24,19 @@ public class LinkService {
 	}
 
 	public Optional<Link> getLink(Long messageId, Long linkId) {
-		return linkRepository.findById(linkId);
+		// return linkRepository.findById(linkId);
+		return linkRepository.findLinkByMessage(messageId, linkId);
 	}
 
-	public Link updateLink(Long messageId, Link link) {
+	public Link updateLink(Link link) {
 		return linkRepository.save(link);
 	}
 
 	public void removeLink(Long messageId, Long linkId) {
-		linkRepository.deleteLinksByMessage(messageId);
+		linkRepository.deleteLinkByMessage(messageId, linkId);
 	}
 
 	public List<Link> getAllLinks(Long messageId) {
-		return linkRepository.findLinksByMessage(messageId);
+		return linkRepository.findAllLinksByMessage(messageId);
 	}
 }

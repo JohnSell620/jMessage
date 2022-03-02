@@ -30,7 +30,7 @@ public class Comment {
 	@GenericGenerator(name="increment", strategy="increment")
 	@Column(name="commentId")
 	private long id;
-    private String message;
+    private String comment;
 	private Long messageId;
     private String author;
 	@JsonDeserialize(using=CustomCreatedDate.class)
@@ -38,9 +38,9 @@ public class Comment {
     
     public Comment() {}
     
-    public Comment(long id, String message, Long messageId, String author) {
+    public Comment(long id, String comment, Long messageId, String author) {
     	this.id = id;
-    	this.message = message;
+    	this.comment = comment;
     	this.messageId = messageId;
     	this.author = author;
     	this.created = new Date();
@@ -52,11 +52,11 @@ public class Comment {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getMessage() {
-		return message;
+	public String getComment() {
+		return comment;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	public Long getMessageId() {
 		return messageId;

@@ -20,11 +20,15 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public User addUser(User user) {
-		return userRepository.save(createUserInstance(user));
+		return userRepository.save(user);
 	}
 
-	public Optional<User> getUser(Long userId) {
+	public Optional<User> getUserById(Long userId) {
 		return userRepository.findById(userId);
+	}
+
+	public Optional<User> getUserByName(String userName) {
+		return userRepository.findByUserName(userName);
 	}
 
 	public User updateUser(User user) {
@@ -32,20 +36,10 @@ public class UserService {
 	}
 
 	public void removeUser(String userName) {
-		userRepository.delete(userRepository.findByUserName(userName));
+		userRepository.delete(userRepository.findByUserName(userName).get());
 	}
 
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
-	}
-
-	private User createUserInstance(User user) {
-		User userModel = new User();
-		userModel.setUsername(user.getUsername());
-		userModel.setPassword(user.getPassword());
-		// userModel.setProfile(user.getProfile());
-		userModel.setId(user.getId());
-		userModel.setpId(user.getpId());
-		return userModel;
 	}
 }

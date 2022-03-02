@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,19 +24,16 @@ public class Thread {
 	@Column(name="threadId")
 	private long id;
 	private String threadName;
-	private long creatorId;
 	@JsonDeserialize(using=CustomCreatedDate.class)
 	private Date created;
 	
 	@OneToOne
 	private User creatingUser;
 	
-	
 	public Thread() {}
 	
 	public Thread(String threadName, long creatorId, User creatingUser) {
 		this.threadName = threadName;
-		this.creatorId = creatorId;
 		this.creatingUser = creatingUser;
 		this.created = new Date();
 	}
@@ -56,14 +52,6 @@ public class Thread {
 
 	public void setThreadName(String threadName) {
 		this.threadName = threadName;
-	}
-
-	public long getCreatorId() {
-		return creatorId;
-	}
-
-	public void setCreatorId(long creatorId) {
-		this.creatorId = creatorId;
 	}
 
 	public User getCreatingUser() {

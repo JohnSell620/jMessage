@@ -23,8 +23,9 @@ public class CommentService {
 		return commentRepository.save(comment);
 	}
 
-	public Optional<Comment> getComment(Long commentId) {
-		return commentRepository.findById(commentId);
+	public Optional<Comment> getComment(Long messageId, Long commentId) {
+		// return commentRepository.findById(commentId);
+		return commentRepository.findCommentByMessage(messageId, commentId);
 	}
 
 	public Comment updateComment(Long messageId, Comment comment) {
@@ -36,10 +37,10 @@ public class CommentService {
 	}
 
 	public void removeComments(Long messageId, Long commentId) {
-		commentRepository.deleteCommentsByMessage(messageId);;
+		commentRepository.deleteAllCommentsByMessage(messageId);;
 	}
 
 	public List<Comment> getAllComments(Long messageId) {
-		return commentRepository.findCommentsByMessage(messageId);
+		return commentRepository.findAllCommentsByMessage(messageId);
 	}
 }

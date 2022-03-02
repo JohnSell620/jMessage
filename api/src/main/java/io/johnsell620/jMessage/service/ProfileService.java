@@ -39,4 +39,9 @@ public class ProfileService {
 		return profileRepository.findAll();
 	}
 
+	public List<Profile> getThreadProfiles(String threadName) {
+		System.out.println("threadName = " + threadName);
+		return profileRepository.findProfilesByThreadName(threadName);
+	}
+
 }

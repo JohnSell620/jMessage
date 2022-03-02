@@ -12,9 +12,12 @@ import io.johnsell620.jMessage.model.Message;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long>, JpaSpecificationExecutor<Message> {
-    @Query(value = "select m from messages m where id = :messageId", nativeQuery = true)
+    @Query(value = "select * from messages m where m.id = :messageId", nativeQuery = true)
     Message findByMessageName(@Param("messageId") Long messageId);
     
-    @Query(value = "select m from messages m, threads t where m.thread_threadId = t.threadId and m.threadName = :threadName", nativeQuery = true)
+    @Query(value = "select * from messages m, threads t where m.thread_id = t.thread_id and t.thread_name = :threadName", nativeQuery = true)
     List<Message> findMessagesByThreadName(@Param("threadName") String threadName);
+    
+    @Query(value = "select * from messages m where m.created > :startDate", nativeQuery = true)
+    List<Message> getAllMessagesForYear(@Param("startDate") int startDate);
 }

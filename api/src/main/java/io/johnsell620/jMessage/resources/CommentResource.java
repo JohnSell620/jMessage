@@ -19,21 +19,21 @@ import io.johnsell620.jMessage.model.Comment;
 import io.johnsell620.jMessage.service.CommentService;
 
 @RestController
-@Path("/comments")
+@Path("/messages/{messageId}/comments")
 //@Path("/secured/comments")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class CommentResource {
 	
 	@Resource(name = "commentService")
 	private CommentService commentService;
 	
 	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
 	public List<Comment> getAllComments(@PathParam("messageId") long messageId) {
 		return commentService.getAllComments(messageId);
 	}
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public Comment addComment(@PathParam("messageId") long messageId, Comment comment) {
 		return commentService.addComment(messageId, comment);
 	}
@@ -53,11 +53,11 @@ public class CommentResource {
 		commentService.removeComment(messageId, commentId);
 	}
 		
-	// @GET
-	// @Path("/{commentId}")
-	// public Comment getMessage(@PathParam("messageId") long messageId, 
-	// 						  @PathParam("commentId") long commentId) {
-	// 	return commentService.getComment(messageId, commentId);
-	// }
+	@GET
+	@Path("/{commentId}")
+	public Comment getComment(@PathParam("messageId") long messageId, 
+							  @PathParam("commentId") long commentId) {
+		return commentService.getComment(messageId, commentId).get();
+	}
 
 }

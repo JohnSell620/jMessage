@@ -26,15 +26,13 @@ public class User {
 	@OneToOne(targetEntity=Profile.class, mappedBy="user")
 	@MapKeyColumn(name="profileId")
 	private Profile profile; 
-		
 
 	public User() {}
 	
-	public User(String username, String password, long pId) { //}, Profile profile) {
+	public User(String username, String password, long pId) {
 		this.username = username;
 		this.password = password;
 		this.pId = pId;
-		// this.profile = profile;
 	}
 	
 	public long getId() {

@@ -43,4 +43,11 @@ public class MessageService {
 		return messageRepository.findMessagesByThreadName(threadName);
 	}
 
+	public List<Message> getAllMessagesForYear(int startDate) {
+		return messageRepository.getAllMessagesForYear(startDate);
+	}
+
+	public List<Message> getAllMessagesPaginated(int startDate, int size) {
+		return messageRepository.getAllMessagesForYear(startDate).subList(0, size);
+	}
 }

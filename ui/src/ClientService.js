@@ -1,22 +1,22 @@
 class ClientService {
   async getUserProfiles() {
-    return getData("/webapi/profiles/");
+    return getData("/jMessage/webapi/profiles/");
   }
   async getConversationMessages(thread) {
-    return getData("/webapi/messages/" + thread + "/");
+    return getData("/jMessage/webapi/messages/" + thread + "/");
   }
   async getConversationUsers(thread) {
-    return getData("/webapi/threads/" + thread + "/users");
+    return getData("/jMessage/webapi/profiles/threads/" + thread);
   }
   async getThreads() {
-    return getData("/webapi/threads/");
+    return getData("/jMessage/webapi/threads/");
   }
 }
 
 function getData(url) {
   return fetch(url, {
     method: 'GET',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET',

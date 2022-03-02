@@ -44,13 +44,13 @@ public class Message {
 	private String message;
 	private String author;
 	private long profileId;
-//	private String threadName;
 	@JsonDeserialize(using=CustomCreatedDate.class)
 	private Date created;
 	
 	@OneToOne
 	private Thread thread;
-	private String threadName;
+
+	private Long threadId;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="messageId", cascade=CascadeType.ALL)
 	@MapKeyColumn(name="commentId")
@@ -62,13 +62,13 @@ public class Message {
 	
 	public Message() {}
 	
-	public Message(long id, String message, String author, long profileId, Thread thread, String threadName) {
+	public Message(long id, String message, String author, long profileId, Thread thread, Long threadId) {
 		this.id = id;
 		this.message = message;
 		this.author = author;
 		this.profileId = profileId;
 		this.thread = thread;
-		this.threadName = threadName;
+		this.threadId = threadId;
 		this.created = new Date();
 	}
 	
@@ -102,6 +102,12 @@ public class Message {
 	public void setProfileId(long profileId) {
 		this.profileId = profileId;
 	}
+	public Long getThreadId() {
+		return threadId;
+	}
+	public void setThreadId(Long threadId) {
+		this.threadId = threadId;
+	}
 	public Thread getThread() {
 		return thread;
 	}
@@ -127,14 +133,6 @@ public class Message {
 		link.setLink(url);
 		link.setRel(rel);
 		links.put(id, link);
-	}
-
-	public String getThreadName() {
-		return threadName;
-	}
-
-	public void setThreadName(String threadName) {
-		this.threadName = threadName;
 	}
 
 }

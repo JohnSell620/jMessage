@@ -13,6 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.web.bind.annotation.RestController;
+
 import io.johnsell620.jMessage.model.Link;
 import io.johnsell620.jMessage.service.LinkService;
 /**
@@ -20,10 +22,11 @@ import io.johnsell620.jMessage.service.LinkService;
  * @author johnny
  *
  */
-@Path("/")
+@RestController
+@Path("/messages/{messageId}/links")
 //@Path("/secured/links")
-@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class LinkResource {
 	
 	@Resource(name = "linkService")
@@ -41,9 +44,9 @@ public class LinkResource {
 	
 	@PUT
 	@Path("/{linkId}")
-	public Link updateLink(@PathParam("messageId") long messageId, @PathParam("linkId") long id, Link link) {
+	public Link updateLink(@PathParam("linkId") long id, Link link) {
 		link.setId(id);
-		return linkService.updateLink(messageId, link);
+		return linkService.updateLink(link);
 	}
 	
 	@DELETE

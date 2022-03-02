@@ -1,10 +1,14 @@
 package io.johnsell620.jMessage.rest;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 // import java.io.BufferedWriter;
 // import java.io.File;
 // import java.io.FileWriter;
 // import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.ws.rs.container.ContainerRequestContext;
@@ -27,19 +31,20 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
 		System.out.println(date + " Headers: " + requestContext.getHeaders());
 		
 		// TODO
-		// if (false) {
-		// 	File file = new File("requestlogs.txt");
-		// 	if (!file.exists()) file.createNewFile();
+		int enableLogging = 0;
+		if (enableLogging >= 3) {
+			File file = new File("requestlogs.txt");
+			if (!file.exists()) file.createNewFile();
 			
-		// 	try(FileWriter fw = new FileWriter("./requestlogs.txt", true);
-		// 		    BufferedWriter bw = new BufferedWriter(fw);
-		// 		    PrintWriter out = new PrintWriter(bw))
-		// 	{
-		// 	    out.println("Headers: " + requestContext.getHeaders());
-		// 	} catch (IOException e) {
-		// 	    e.printStackTrace();
-		// 	}
-		// }
+			try(FileWriter fw = new FileWriter("./requestlogs.txt", true);
+				    BufferedWriter bw = new BufferedWriter(fw);
+				    PrintWriter out = new PrintWriter(bw))
+			{
+			    out.println("Headers: " + requestContext.getHeaders());
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -49,19 +54,20 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
 		System.out.println(date + " Headers: " + responseContext.getHeaders());
 		
 		// TODO
-		// if (false) {
-		// 	File file = new File("./responselogs.txt");
-		// 	if (!file.exists()) file.createNewFile();
+		int enableLogging = 0;
+		if (enableLogging >= 3) {
+			File file = new File("./responselogs.txt");
+			if (!file.exists()) file.createNewFile();
 			
-		// 	try(FileWriter fw = new FileWriter("responselogs.txt", true);
-		// 		    BufferedWriter bw = new BufferedWriter(fw);
-		// 		    PrintWriter out = new PrintWriter(bw))
-		// 	{
-		// 	    out.println("Headers: " + requestContext.getHeaders());
-		// 	} catch (IOException e) {
-		// 	    e.printStackTrace();
-		// 	}
-		// }
+			try(FileWriter fw = new FileWriter("responselogs.txt", true);
+				    BufferedWriter bw = new BufferedWriter(fw);
+				    PrintWriter out = new PrintWriter(bw))
+			{
+			    out.println("Headers: " + requestContext.getHeaders());
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+		}
 	}
 
 }

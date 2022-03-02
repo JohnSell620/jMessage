@@ -34,6 +34,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ws.rs.BeanParam;
 // import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -45,12 +46,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.johnsell620.jMessage.model.Message;
+import io.johnsell620.jMessage.resources.beans.MessageFilterBean;
 // import io.johnsell620.jMessage.resources.beans.MessageFilterBean;
 import io.johnsell620.jMessage.service.MessageService;
 
@@ -63,41 +66,37 @@ public class MessageResource {
 	@Resource(name = "messageService")
 	MessageService messageService;
 		
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public List<Message> getJsonMessages(@BeanParam MessageFilterBean filterBean) {
-//		System.out.println("JSON method called");
-//		if (filterBean.getYear() > 0) {
-//			return messageService.getAllMessagesForYear(filterBean.getYear());
-//		}
-//		if (filterBean.getStart() > 0 && filterBean.getSize() > 0) {
-//			return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
-//		}
-//		return messageService.getAllMessages();
-//	}	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Message> getJsonMessages(@BeanParam MessageFilterBean filterBean) {
+		System.out.println("JSON method called");
+		if (filterBean.getYear() > 0) {
+			return messageService.getAllMessagesForYear(filterBean.getYear());
+		}
+		if (filterBean.getStart() > 0 && filterBean.getSize() > 0) {
+			return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
+		}
+		return messageService.getAllMessages();
+	}
 	
-//	@GET
-//	@Produces(MediaType.TEXT_XML)
-//	public List<Message> getXmlMessages(@BeanParam MessageFilterBean filterBean) {
-//		System.out.println("XML method called");
-//		if (filterBean.getYear() > 0) {
-//			return messageService.getAllMessagesForYear(filterBean.getYear());
-//		}
-//		if (filterBean.getStart() > 0 && filterBean.getSize() > 0) {
-//			return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
-//		}
-//		return messageService.getAllMessages();
-//	}
+	@GET
+	@Produces(MediaType.TEXT_XML)
+	public List<Message> getXmlMessages(@BeanParam MessageFilterBean filterBean) {
+		System.out.println("XML method called");
+		if (filterBean.getYear() > 0) {
+			return messageService.getAllMessagesForYear(filterBean.getYear());
+		}
+		if (filterBean.getStart() > 0 && filterBean.getSize() > 0) {
+			return messageService.getAllMessagesPaginated(filterBean.getStart(), filterBean.getSize());
+		}
+		return messageService.getAllMessages();
+	}
 	
 	@POST
-	public Response addMessage(Message message, @Context UriInfo uriInfo) {
-		System.out.print(uriInfo.getAbsolutePath());
-		Message newMessage = messageService.addMessage(message);
-		String newId = String.valueOf(newMessage.getId());
-		URI uri = uriInfo.getAbsolutePathBuilder().path(newId).build();
-		return Response.created(uri)
-				.entity(newMessage)
-				.build();
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResponseEntity<Message> addMessage(Message message) {
+		return new ResponseEntity<>(messageService.addMessage(message), HttpStatus.OK);
 	}
 	
 	@PUT
@@ -166,7 +165,7 @@ public class MessageResource {
 	@GET
 	@Path("/{threadName}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Message> getThreadMessages(@PathParam("threadName") String threadName, @Context UriInfo uriInfo) {
+	public List<Message> getThreadMessages(@PathParam("threadName") String threadName /*, @Context UriInfo uriInfo */) {
 		return messageService.getThreadMessages(threadName);
 	}
 	

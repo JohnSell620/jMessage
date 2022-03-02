@@ -13,7 +13,8 @@ import org.hibernate.annotations.GenericGenerator;
 /**
  * 
  * @author johnny
- *
+ * In the java documentation there is a provided link class that could
+ * be more suited for this.
  */
 @Entity
 @Table(name="links")
@@ -65,5 +66,3 @@ public class Link {
 	}
 	
 } 
-// In the java documentation there is a provided link class that could be 
-// more suited for this.

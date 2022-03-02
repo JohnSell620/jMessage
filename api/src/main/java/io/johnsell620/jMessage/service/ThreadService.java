@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.johnsell620.jMessage.dao.ThreadRepository;
-import io.johnsell620.jMessage.model.Profile;
 import io.johnsell620.jMessage.model.Thread;
 /**
  * 
@@ -24,8 +23,12 @@ public class ThreadService {
 		return threadRepository.save(thread);
 	}
 
-	public Optional<Thread> getThread(Long threadId) {
+	public Optional<Thread> getThreadById(Long threadId) {
 		return threadRepository.findById(threadId);
+	}
+
+	public Optional<Thread> getThreadByName(String threadName) {
+		return threadRepository.findByName(threadName);
 	}
 
 	public Thread updateThread(Thread thread) {
@@ -39,9 +42,4 @@ public class ThreadService {
 	public List<Thread> getAllThreads() {
 		return threadRepository.findAll();
 	}
-
-	public List<Profile> getThreadProfiles(String threadName) {
-		return threadRepository.findProfilesByThreadName(threadName);
-	}
-
 }
