@@ -4,7 +4,7 @@
 
 ### Steps for development startup ###
 
-1. Build MySQL database images and create jmessage database. Copy database using sql dump if needed. Finally give read permission to all users.
+#### 1. Build MySQL database image, copy development database jmessage, and give all users read permission to mysql volume.
 ```bash
 $ docker run \
     -d \
@@ -17,13 +17,16 @@ $ docker run \
 $ mysql -uroot -psomepassword -h127.0.0.1 -P3306 jmessage < /path/to/jmessage.sql
 $ sudo chmod -R a+r mysql
 ```
+Note this step can be skipped, but when running ```docker-compose up --build``` for the first time, the MySQL container will need to be restarted manually before the API container times out from database connection failure. Otherwise just run ```docker-compose up``` after the first command and the containers will start up fine.
 
-2. Build api package (.jar).
+#### 2. Build api package (.jar).
+Do this with the database container running to avoid failed tests during packaging.
 ```bash
 $ ./mvnw package
 ```
 
-3. Build (if needed) and run database, backend, and frontend containers. Don't recreate database container.
+#### 3. Build (if needed) and run database, backend, and frontend containers. Don't recreate database container.
 ```bash
 $ docker-compose up --no-recreate
 ```
+

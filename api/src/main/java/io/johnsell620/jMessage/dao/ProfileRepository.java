@@ -15,7 +15,7 @@ public interface ProfileRepository extends JpaRepository<Profile, Long>, JpaSpec
     @Query(value = "select p from profiles p where userName = :profileName", nativeQuery = true)
     Profile findByProfileName(@Param("profileName") String profileName);
     
-    @Query(value = "select p.profile_id, p.created, p.first_name, p.last_name, p.profile_name, p.user_id "
+    @Query(value = "select distinct p.profile_id, p.created, p.first_name, p.last_name, p.profile_name, p.user_id "
             + "from profiles p left join messages m on p.profile_id = m.profile_id "
             + "inner join threads t on m.thread_id = t.thread_id "
             + "where t.thread_name = :threadName", nativeQuery = true)

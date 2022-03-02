@@ -13,6 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.johnsell620.jMessage.model.Thread;
@@ -29,8 +31,8 @@ public class ThreadResource {
 	private ThreadService threadService;
 	
 	@GET
-	public List<Thread> getThreads() {
-		return threadService.getAllThreads();
+	public ResponseEntity<List<Thread>> getThreads() {
+		return new ResponseEntity<>(threadService.getAllThreads(), HttpStatus.OK);
 	}
 	
 	@POST

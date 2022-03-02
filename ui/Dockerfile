@@ -1,6 +1,6 @@
 FROM node:alpine
-WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
+WORKDIR /jmessage_ui
+ENV PATH /jmessage_ui/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm i

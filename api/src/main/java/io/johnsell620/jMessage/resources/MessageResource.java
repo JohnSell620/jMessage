@@ -165,8 +165,8 @@ public class MessageResource {
 	@GET
 	@Path("/{threadName}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Message> getThreadMessages(@PathParam("threadName") String threadName /*, @Context UriInfo uriInfo */) {
-		return messageService.getThreadMessages(threadName);
+	public ResponseEntity<List<Message>> getThreadMessages(@PathParam("threadName") String threadName /*, @Context UriInfo uriInfo */) {
+		return new ResponseEntity<>(messageService.getThreadMessages(threadName), HttpStatus.OK);
 	}
 	
 }

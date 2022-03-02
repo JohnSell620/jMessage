@@ -1,9 +1,9 @@
 class ClientService {
   async getUserProfiles() {
-    return getData("/jMessage/webapi/profiles/");
+    return getData("/jMessage/webapi/profiles");
   }
   async getConversationMessages(thread) {
-    return getData("/jMessage/webapi/messages/" + thread + "/");
+    return getData("/jMessage/webapi/messages/" + thread);
   }
   async getConversationUsers(thread) {
     return getData("/jMessage/webapi/profiles/threads/" + thread);
@@ -33,8 +33,7 @@ function getData(url) {
     return response.json();
   })
   .then(json => {
-    // console.log(json);
-    return json;
+    return json.body;
   })
   .catch(error => {
     console.log(error);
